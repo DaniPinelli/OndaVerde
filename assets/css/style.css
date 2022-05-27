@@ -10,21 +10,6 @@ body {
   padding-right: 0;
 }
 
-.whatsapp {
-  position: fixed;
-  bottom: 4rem;
-  right: 1.5rem;
-  z-index: 9999;
-  width: 4.5rem;
-  height: 4.5rem;
-  background: transparent;
-  border-radius: 50%;
-  cursor: pointer;
-  background-image: url("../images/what2.jfif");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 116%;
-}
 
 /*////////////////////////// Navbar /////////////////*/
 
@@ -172,13 +157,11 @@ body {
 }*/
 
 .carousel-item img {
-  /* background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 46vw;*/
-  height: 720px;
+  width: auto;
+  height: 45rem;
+  padding: 5rem;
+  border-radius: 24%;
 }
-
 
 
 /*////////////////////////// Prices ////////////////////*/
@@ -265,6 +248,48 @@ body {
   font-size: 1.5em;
   justify-content: space-around;
 }
+
+.whatsapp {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  background-image: url("../images/what2.jfif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 122%;
+}
+
+/*.arrow{
+  background-image: url("../images/up2.webp");
+  height: 2.5rem;
+  width: 1.5rem;
+  position: fixed;
+  bottom: 0.5rem;
+  right: 3rem;
+  z-index: 9999;
+  color:black;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 200%;
+}
+
+.fixed{
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+   background-color: none;
+}*/
+
+
+
 
 /*/////////////////////////// 1882px ///////////////////////////////*/
 @media(max-width:1882px) {
