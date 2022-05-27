@@ -10,7 +10,21 @@ body {
   padding-right: 0;
 }
 
-
+.whatsapp {
+  position: fixed;
+  bottom: 4rem;
+  right: 1.5rem;
+  z-index: 9999;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  background-image: url("../images/what2.jfif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 116%;
+}
 
 /*////////////////////////// Navbar /////////////////*/
 
@@ -541,6 +555,11 @@ body {
 
   .prices-container {
     height: 810px;
+  }
+
+  .whatsapp {
+  width: 3.5rem;
+  height: 3.5rem;
   }
 }
 
