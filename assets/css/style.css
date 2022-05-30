@@ -25,7 +25,9 @@ body {
 }
 
 .navbar ul li a {
-  font-size: 1.10em;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -159,7 +161,6 @@ body {
 .carousel-item img {
   width: auto;
   height: 45rem;
-  padding: 5rem;
   border-radius: 24%;
 }
 
@@ -481,6 +482,10 @@ body {
   }
 }
 
+.navbar ul li a {
+  font-size: 1.25em;
+}
+
 
 /*//////////////////////////  644px ///////////////////////////////*/
 @media(max-width:644px) {}
@@ -521,11 +526,11 @@ body {
   }
 
   .title-slider h4 {
-    font-size: 1.25em;
+    font-size: 2em;
   }
 
   .title-slider p {
-    font-size: 0.75em;
+    font-size: 1.25em;
   }
 
   .promo-tittle-div1 h5 {
@@ -591,6 +596,10 @@ body {
 @media(max-width:526px) {
   .title-main-hide h1 {
     font-size: 1.2em;
+  }
+
+  .optional-text{
+    display: none;
   }
 
   .title-main-hide p {
