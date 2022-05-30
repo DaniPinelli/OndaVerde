@@ -13,7 +13,7 @@ window.onload = (() => {
 
         let navbar = document.getElementById('navbar');
 
-        if (window.scrollY > 1400) {
+        if (window.scrollY > 800) {
             navbar.classList.add("fixed-bottom");
         } else {
             navbar.classList.remove("fixed-bottom");
