@@ -6,16 +6,17 @@ setTimeout(() => {
 
 }, 4000);
 
+
 window.onload = (() => {
 
     window.addEventListener('scroll', () => {
 
-        let arrow = document.getElementById('arrow');
+        let navbar = document.getElementById('navbar');
 
-        if (window.scrollY > 1000) {
-            arrow.classList.remove("title-hidden");
+        if (window.scrollY > 1400) {
+            navbar.classList.add("fixed-bottom");
         } else {
-            arrow.classList.add("title-hidden");
+            navbar.classList.remove("fixed-bottom");
         }
     });
 
