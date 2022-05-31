@@ -173,12 +173,21 @@ font-size: 2em;
 
 .prices-container {
   height: 900px;
+  background-image: url("../images/bddcars1.jpg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .prices {
+  margin-top: 4rem;
   margin-left: auto;
   margin-right: auto;
   flex-wrap: wrap;
+}
+
+.promo-tittle-div1{
+  margin-top: 14rem;
 }
 
 .promo-tittle-div1 h5 {
@@ -425,6 +434,21 @@ font-size: 2em;
     height: 978px;
   }
 }
+
+@media(max-width:745px) {
+.promo-tittle-div1{
+  margin-top: 0rem;
+}
+
+
+.promo-tittle-div1 h5{
+  padding-top: 3rem;
+}
+
+.prices{
+  margin-top: 0rem;
+}
+  }
 
 
 
