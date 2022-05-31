@@ -270,20 +270,8 @@ font-size: 2em;
   background-size: 122%;
 }
 
-.arrow{
-  background-image: url("../images/arrow6.png");
-  height: 2.5rem;
-  width: 2.5rem;
-  position: fixed;
-  bottom: 1rem;
-  right: 2.2rem;
-  z-index: 9999;
-  border-radius: 50%;
-  color:black;
-  cursor: pointer;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 200%;
+#promos{
+  text-transform: uppercase;
 }
 
 
@@ -382,7 +370,7 @@ font-size: 2em;
   }
 
   .container-links {
-    height: 764px;
+    height: 915px;
     padding-left: 0;
     padding-right: 0;
   }
@@ -458,26 +446,17 @@ font-size: 2em;
     margin-top: 14rem;
   }
 
-  .card-prices p {
-    font-size: 1em;
-  }
-
-  .promo-tittle-div1 h5 {
-    padding-top: 2rem;
-  }
-
-  .promo-tittle-div2 h6 {
-    margin-top: 1rem;
-  }
-
   .prices {
-    margin-top: 0;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .card-prices {
-    height: 180px;
-  }
+  .prices-container {
+    height: 1445px;
 }
+ 
+}
+
 
 /*//////////////////////////  668px ///////////////////////////////*/
 @media(max-width:668px) {
@@ -519,12 +498,6 @@ font-size: 2em;
     height: 730px;
   }
 
-  .card img {
-    height: 5rem;
-    width: 4rem;
-    padding-top: 0;
-  }
-
   .links-container-title h3 {
     font-size: 1.5em;
   }
@@ -541,9 +514,7 @@ font-size: 2em;
     font-size: 2em;
   }
 
-  .promo-tittle-div2 h6 {
-    font-size: 1em;
-  }
+  
 
   .links-container-title {
     margin-top: 6rem;
@@ -553,11 +524,6 @@ font-size: 2em;
     margin-top: 0;
     width: 7.2rem;
     font-size: 0.65em;
-  }
-
-  .card {
-    height: 166px;
-    width: 194px;
   }
 
   .links-container {
@@ -575,12 +541,6 @@ font-size: 2em;
 
   .carousel-item img {
     height: 514px;
-  }
-
-
-
-  .prices-container {
-    height: 810px;
   }
 
   .whatsapp {
@@ -653,20 +613,10 @@ font-size: 2em;
 
   .promo-tittle-div1 h5 {
     padding-top: 1rem;
-    font-size: 1.5em;
   }
 
   .card-body {
     padding: 1rem;
-  }
-
-  .card-prices {
-    height: 112px;
-    width: 183px;
-  }
-
-  .card-prices p {
-    font-size: 0.75em;
   }
 }
 
