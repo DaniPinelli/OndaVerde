@@ -3,6 +3,7 @@ body {
   padding: 0;
   font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .container-fluid {
@@ -24,8 +25,8 @@ body {
   width: auto;
 }
 
-#icon-hamburguer{
-font-size: 2em;
+#icon-hamburguer {
+  font-size: 2em;
 }
 
 .navbar ul li a {
@@ -186,7 +187,7 @@ font-size: 2em;
   flex-wrap: wrap;
 }
 
-.promo-tittle-div1{
+.promo-tittle-div1 {
   margin-top: 14rem;
 }
 
@@ -219,7 +220,7 @@ font-size: 2em;
   font-size: 1.5em;
 }
 
-#promos{
+#promos {
   text-transform: uppercase;
 }
 
@@ -283,17 +284,31 @@ font-size: 2em;
   background-size: 122%;
 }
 
-.redes-cards{
-  display: flex;
+.nosotros {
+  min-height: 80vh;
 }
 
-.seguinos-img{
+.foot {
+  display: flex;
+  justify-content: center;
+}
+
+.sociales {
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+  justify-content: space-around;
+}
+
+.seguinos-img {
   height: 2rem;
   width: 2rem;
 }
 
-.map{
-  min-width: 260px;
+.map {
+  height: 263px;
+  min-width: 90%;
 }
 
 
@@ -451,19 +466,19 @@ font-size: 2em;
 }
 
 @media(max-width:745px) {
-.promo-tittle-div1{
-  margin-top: 0rem;
-}
-
-
-.promo-tittle-div1 h5{
-  padding-top: 3rem;
-}
-
-.prices{
-  margin-top: 0rem;
-}
+  .promo-tittle-div1 {
+    margin-top: 0rem;
   }
+
+
+  .promo-tittle-div1 h5 {
+    padding-top: 3rem;
+  }
+
+  .prices {
+    margin-top: 0rem;
+  }
+}
 
 
 
@@ -490,8 +505,8 @@ font-size: 2em;
 
   .prices-container {
     height: 1445px;
-}
- 
+  }
+
 }
 
 
@@ -508,7 +523,20 @@ font-size: 2em;
 
 
 /*//////////////////////////  644px ///////////////////////////////*/
-@media(max-width:644px) {}
+@media(max-width:644px) {
+  .foot {
+    flex-direction: column-reverse;
+  }
+
+  .seguinos-img {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  .map {
+    max-width: 40vw;
+  }
+}
 
 
 /*/////////////////////////// 577px ///////////////////////////////*/
@@ -551,7 +579,7 @@ font-size: 2em;
     font-size: 2em;
   }
 
-  
+
 
   .links-container-title {
     margin-top: 6rem;
@@ -559,7 +587,7 @@ font-size: 2em;
 
   .btn-links {
     margin-top: 0;
-    
+
   }
 
   .links-container {
@@ -580,8 +608,8 @@ font-size: 2em;
   }
 
   .whatsapp {
-  width: 3.5rem;
-  height: 3.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 }
 
@@ -598,7 +626,7 @@ font-size: 2em;
     font-size: 1.2em;
   }
 
-  .optional-text{
+  .optional-text {
     display: none;
   }
 
