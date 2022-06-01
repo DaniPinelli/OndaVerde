@@ -25,30 +25,30 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto" data-toggle="collapse">
+        <ul class="navbar-nav ml-auto" data-toggle="collapse">
           <li class="nav-item active">
-            <a class="nav-link ml-4" href="#main">
+            <a class="nav-link ml-5 mr-4" href="#main">
               Inicio <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link ml-4" href="#students">
+            <a class="nav-link ml-5 mr-4" href="#students">
               Alumnos
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link ml-4" href="#our-prices">
+            <a class="nav-link ml-5 mr-4" href="#our-prices">
               Promos
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link ml-4" href="#links">
+            <a class="nav-link ml-5 mr-4" href="#links">
               Enlaces
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link ml-3 " href="#us">
-              Sobre
+            <a class="nav-link ml-5 mr-4" href="#us">
+              Nosotros
             </a>
           </li>
         </ul>
@@ -198,10 +198,11 @@
   </div>
 
   <div class="container-fluid container-links" id="links">
-    <div class="links-container-title ">
-      <h3 class="text-center font-weight-light">
-        Enlaces que te pueden ser útiles 🤓
+    <div class="links-container-title d-flex justify-content-center">
+      <h3 class=" text-center font-weight-light">
+        <strong>Enlaces que te pueden ser útiles </strong>
       </h3>
+      <p class="emoji-student"> 🤓</p>
     </div>
     <div class="cards-container d-flex justify-content-around links-container">
       <div class="links-cards first">
@@ -243,39 +244,43 @@
 
 
   <footer>
-    <div class="container">
-      <div class="row">
-        <div class="nosotros">
+    <div class="container last-container">
+      <div class="row nosotros d-flex justify-content-center" id="us">
+        <div class="redes-container d-flex justify-content-center">
+          <h3 class="text-center d-flex justify-content-center last-title">
+            Seguinos en nuestras redes 💗
+          </h3>
+        </div>
+        <div class="foot d-flex justify-content-center col-12">
 
-          <div class="redes-container">
-            <h3 class="text-center font-weight-light">
-              Seguinos en nuestras redes 💗
-            </h3>
-
-            <div class="foot">
-
-              <div class="redes">
-                <div class="sociales">
-                  <a href="https://www.facebook.com/ondaverdeescueladeconductores/" alt="logo"><img class="seguinos-img"
-                      src="./assets/images/facebook.png" /></a>
-                </div>
-                <div class="sociales">
-                  <a href="https://www.instagram.com/ondaverdeescuela/" alt="logo"><img class="seguinos-img"
-                      src="./assets/images/instagram.png" /></a>
-                </div>
-              </div>
-              <div class="map">
-                <iframe class="map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.4828053375622!2d-60.69761094484344!3d-32.88540097725489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b65399d3298b2f%3A0x7736e229113028f!2sBlvd.%20Rondeau%202995!5e0!3m2!1ses-419!2sar!4v1654027692345!5m2!1ses-419!2sar"
-                  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              </div>
+          <div class="redes col-6">
+            <div class="sociales">
+              <a href="https://www.facebook.com/ondaverdeescueladeconductores/" alt="logo"><img class="facebook"
+                  src="./assets/images/facebook1.png" /></a>
             </div>
-
-
+            <div class="sociales">
+              <a href="https://www.instagram.com/ondaverdeescuela/" alt="logo"><img class="seguinos-img"
+                  src="./assets/images/instagram.png" /></a>
+            </div>
+            <div class="oficina">
+              <p>Estamos en <strong>Bv. Rondeau 2995</strong> pero damos clases en <strong>todo Rosario y
+                  alrededores</strong></p>
+              <p>Nuetro horario de atención es de lunes a jueves de 9:30 a 13hs y de 16 a 20hs. Jueves corrido de 9:30 a
+                17hs</p>
+              <p>Horario de clases: <strong>De lunes a viernes de 8 a 20hs</strong></p>
+            </div>
+          </div>
+          <div class="map col-6 d-flex justify-content-center">
+            <iframe class="map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.4828053375622!2d-60.69761094484344!3d-32.88540097725489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b65399d3298b2f%3A0x7736e229113028f!2sBlvd.%20Rondeau%202995!5e0!3m2!1ses-419!2sar!4v1654027692345!5m2!1ses-419!2sar"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
+
+
       </div>
-    </div>
+
+
     </div>
 
     <a href="https://api.whatsapp.com/send?phone=5493413642175" id="whatsapp" class="whatsapp title-hidden"></a>
