@@ -6,6 +6,15 @@ body {
   min-height: 100vh;
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  list-style-type: none;
+  list-style: none;
+}
+
 .container-fluid {
   padding-left: 0;
   padding-right: 0;
@@ -337,9 +346,23 @@ footer {
   width: 4rem;
 }
 
+.ubication-img {
+  font-size: 4rem;
+  margin-left: -8px;
+}
+
+.deco-none {
+  text-decoration: none;
+  list-style: none;
+}
+
 .oficina {
   margin-top: 3rem;
   font-size: 1.25em;
+}
+
+.horario-p {
+  font-size: 4rem
 }
 
 .map {
