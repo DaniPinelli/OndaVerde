@@ -119,7 +119,7 @@ a:active {
 
 .links-container-title,
 .links-container {
-  margin-top: 12rem;
+  margin-top: 6rem;
 }
 
 .cards-container {
@@ -128,12 +128,7 @@ a:active {
 
 .links-container-title h3 {
   font-size: 3.5em;
-  background: blanchedalmond;
-  width: fit-content;
-}
-
-.emoji-student {
-  font-size: 3.5em;
+  font-weight: bolder;
 }
 
 .card {
@@ -231,10 +226,15 @@ a:active {
   text-align: center;
 }
 
+.card-title {
+  display: block;
+  font-size: 1.5em;
+}
+
 .card-prices {
   color: white;
   background-color: black;
-  height: 250px;
+  height: 270px;
   max-width: 284px;
   border: none;
   margin-top: 5rem;
@@ -319,7 +319,7 @@ footer {
 }
 
 .last-title {
-  font-size: 4em;
+  font-size: 3.5em;
 }
 
 .foot {
@@ -336,19 +336,24 @@ footer {
 }
 
 .seguinos-img {
-  height: 4rem;
-  width: 4rem;
+  height: 2rem;
+  width: 2rem;
 }
 
 .facebook {
   border-radius: 10%;
-  height: 4rem;
-  width: 4rem;
+  height: 2rem;
+  width: 2rem;
 }
 
 .ubication-img {
-  font-size: 4rem;
+  font-size: 2rem;
   margin-left: -8px;
+}
+
+.color-white {
+  color: white;
+  font-size: 1.25em;
 }
 
 .deco-none {
@@ -357,12 +362,13 @@ footer {
 }
 
 .oficina {
-  margin-top: 3rem;
+  margin-top: 2rem;
   font-size: 1.25em;
 }
 
 .horario-p {
-  font-size: 4rem
+  font-size: 2rem;
+  margin-left: -8px;
 }
 
 .map {
@@ -370,10 +376,26 @@ footer {
   min-width: 90%;
 }
 
+.webmaster {
+  display: flex;
+  justify-content: center;
+}
 
+.webmaster-p {
+  font-size: 1.25em;
+  color: #fffffe;
+}
 
+.linkedin-img {
+  height: 1.75rem;
+  width: 1.75rem;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
 
-
+.mb-5rem {
+  margin-bottom: 5rem;
+}
 
 
 
@@ -405,6 +427,10 @@ footer {
   .emoji {
     max-width: 80%;
   }
+
+  .map {
+    min-width: 70%;
+  }
 }
 
 
@@ -422,12 +448,18 @@ footer {
   }
 
   .links-container-title {
-    margin-top: 8rem;
+    margin-top: 1rem;
   }
 
   .links-container {
-    margin-top: 4rem;
+    margin-top: 1rem;
   }
+
+  .map {
+    height: 18rem;
+    min-width: 60%;
+  }
+
 }
 
 
@@ -468,7 +500,7 @@ footer {
   }
 
   .container-links {
-    height: 915px;
+    height: 556px;
     padding-left: 0;
     padding-right: 0;
   }
@@ -500,6 +532,10 @@ footer {
     font-size: 1.25em;
   }
 
+  .last-title {
+    font-size: 2.5em;
+  }
+
 }
 
 /*/////////////////////////// 922px ///////////////////////////////*/
@@ -522,6 +558,30 @@ footer {
   .prices-container {
     height: 978px;
   }
+
+  .color-white {
+    font-size: 1em;
+  }
+
+  .webmaster-p {
+    font-size: 0.75em;
+  }
+
+  .linkedin-img {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 2px;
+  }
+}
+
+@media(max-width:770px) {
+  .last-title {
+    font-size: 2em;
+  }
+
+  .redes-p {
+    display: none;
+  }
 }
 
 @media(max-width:745px) {
@@ -536,6 +596,10 @@ footer {
 
   .prices {
     margin-top: 0rem;
+  }
+
+  .container-links {
+    height: 680px;
   }
 }
 
@@ -574,10 +638,21 @@ footer {
   .div-title p {
     font-size: 1.4em;
   }
-}
 
-.navbar ul li a {
-  font-size: 1.5em;
+  .navbar ul li a {
+    font-size: 1.5em;
+  }
+
+  .foot {
+    margin-top: 2rem;
+    margin-bottom: 8rem;
+  }
+
+  .map {
+    margin-top: 1rem;
+    height: 20rem;
+    min-width: 100%;
+  }
 }
 
 
@@ -587,14 +662,21 @@ footer {
     flex-direction: column-reverse;
   }
 
-  .seguinos-img {
-    height: 1rem;
-    width: 1rem;
+  .map-div {
+    margin-top: 2rem;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -40px;
   }
 
-  .map {
-    max-width: 40vw;
+  .redes {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
+
 }
 
 
@@ -638,8 +720,6 @@ footer {
     font-size: 2em;
   }
 
-
-
   .links-container-title {
     margin-top: 6rem;
   }
@@ -664,6 +744,10 @@ footer {
 
   .carousel-item img {
     height: 514px;
+  }
+
+  .container-links {
+    height: 964px;
   }
 
   .whatsapp {
@@ -696,6 +780,10 @@ footer {
   .main-container,
   .nav-div {
     height: 686px;
+  }
+
+  .last-title {
+    font-size: 1.5em;
   }
 
 }
