@@ -233,7 +233,7 @@ a:active {
 
 .card-prices {
   color: white;
-  background-color: black;
+  background-color: rgb(12, 0, 24);
   height: 270px;
   max-width: 284px;
   border: none;
@@ -369,6 +369,10 @@ footer {
 .horario-p {
   font-size: 2rem;
   margin-left: -8px;
+}
+
+.map-div {
+  flex-direction: column;
 }
 
 .map {
@@ -659,7 +663,7 @@ footer {
 /*//////////////////////////  644px ///////////////////////////////*/
 @media(max-width:644px) {
   .foot {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .map-div {
