@@ -405,6 +405,7 @@ footer {
   display: flex;
   justify-content: start;
   background: rgb(32, 3, 60);
+  border-radius: 6px;
 }
 
 .webmaster-p {
@@ -423,6 +424,9 @@ footer {
   margin-bottom: 5rem;
 }
 
+.whats-diseño {
+  margin-left: 0.5rem;
+}
 
 
 /*/////////////////////////// 1882px ///////////////////////////////*/
@@ -722,6 +726,10 @@ footer {
   .webmaster {
     flex-direction: column;
 
+  }
+
+  .whats-diseño {
+    margin-left: 0;
   }
 
 
