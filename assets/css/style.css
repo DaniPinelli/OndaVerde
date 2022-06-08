@@ -44,6 +44,10 @@ a:active {
   justify-content: center;
 }
 
+.escuela {
+  color: #fff
+}
+
 .mr-4 {
   margin-right: 4rem;
 }
@@ -57,7 +61,7 @@ a:active {
 }
 
 .nav-div {
-  background-image: url("../images/nav3.jpg");
+  background-image: url("../images/nav3.webp");
   height: 1100px;
   width: 100%;
   background-position: top;
@@ -78,7 +82,7 @@ a:active {
   margin-right: auto;
 }
 
-.div-title h1 {
+.div-title h2 {
   font-family: 'Montserrat', sans-serif;
   color: whitesmoke;
   font-size: 2.5em;
@@ -111,7 +115,7 @@ a:active {
   padding-left: 190px;
   padding-right: 190px;
   height: 916px;
-  background-image: url("../images/bg-links.jpg");
+  background-image: url("../images/bg-links.webp");
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -194,7 +198,7 @@ a:active {
 
 .prices-container {
   height: 900px;
-  background-image: url("../images/bddcars1.jpg");
+  background-image: url("../images/bddcars1.webp");
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -274,7 +278,7 @@ a:active {
   justify-content: center;
 }
 
-.title-main-hide h1 {
+.title-main-hide h2 {
   font-size: 1.5em;
 }
 
@@ -303,7 +307,7 @@ a:active {
   background: transparent;
   border-radius: 50%;
   cursor: pointer;
-  background-image: url("../images/what2.jfif");
+  background-image: url("../images/what2.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 122%;
@@ -450,6 +454,18 @@ footer {
 
 }
 
+@media(max-width:1708px) {
+  .escuela {
+    font-size: 2em;
+  }
+
+  .navbar ul li a {
+    font-size: 1.5em;
+
+  }
+
+}
+
 /*/////////////////////////// 1660px ///////////////////////////////*/
 @media(max-width:1660px) {
 
@@ -460,6 +476,15 @@ footer {
 
   .map {
     min-width: 70%;
+  }
+
+  .escuela {
+    font-size: 1.5em;
+  }
+
+  .navbar ul li a {
+    font-size: 1.25em;
+
   }
 }
 
@@ -496,7 +521,7 @@ footer {
 /*/////////////////////////// 1204px ///////////////////////////////*/
 @media(max-width:1204px) {
 
-  .div-title h1 {
+  .div-title h2 {
     font-size: 2em;
   }
 
@@ -507,6 +532,15 @@ footer {
   .emoji p {
     margin-top: 0;
     font-size: 2.5em;
+  }
+
+  .escuela {
+    font-size: 1em;
+  }
+
+  .navbar ul li a {
+    font-size: 1em;
+
   }
 }
 
@@ -644,7 +678,7 @@ footer {
 /*//////////////////////////  740px ///////////////////////////////*/
 @media(max-width:740px) {
 
-  .div-title h1 {
+  .div-title h2 {
     font-size: 1.8em;
   }
 
@@ -821,7 +855,7 @@ footer {
 
 /*////////////////////////// 526px ///////////////////////////////*/
 @media(max-width:526px) {
-  .title-main-hide h1 {
+  .title-main-hide h2 {
     font-size: 1.2em;
   }
 
@@ -847,12 +881,16 @@ footer {
 
 /*////////////////////////// 450px ///////////////////////////////*/
 @media(max-width:450px) {
-  .title-hidden h1 {
+  .title-hidden h2 {
     font-size: 1.25em;
   }
 
   .carousel-item img {
     height: 370px;
+  }
+
+  .escuela {
+    display: none;
   }
 }
 
@@ -860,11 +898,11 @@ footer {
 /*////////////////////////// 412px ///////////////////////////////*/
 @media(max-width:412px) {
 
-  .title-hidden h1 {
+  .title-hidden h2 {
     font-size: 1.25em;
   }
 
-  .title-hidden h1 {
+  .title-hidden h2 {
     font-size: 1.5em;
   }
 
@@ -890,7 +928,7 @@ footer {
 
 /*////////////////////////// 376px ///////////////////////////////*/
 @media(max-width:376px) {
-  .title-hidden h1 {
+  .title-hidden h2 {
     padding-top: 10px;
     font-size: 1em;
   }
