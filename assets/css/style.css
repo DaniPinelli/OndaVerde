@@ -600,6 +600,10 @@ footer {
     font-size: 2.5em;
   }
 
+  .escuela {
+    font-size: 2em;
+  }
+
 }
 
 /*/////////////////////////// 922px ///////////////////////////////*/
@@ -652,6 +656,11 @@ footer {
     height: 2.5rem;
     width: 2.5rem;
   }
+
+  .conductores {
+    display: none;
+  }
+
 }
 
 @media(max-width:745px) {
@@ -889,9 +898,6 @@ footer {
     height: 370px;
   }
 
-  .escuela {
-    display: none;
-  }
 }
 
 
@@ -903,6 +909,10 @@ footer {
   }
 
   .title-hidden h2 {
+    font-size: 1.5em;
+  }
+
+  .escuela {
     font-size: 1.5em;
   }
 
@@ -939,5 +949,9 @@ footer {
 
   .redes-p {
     display: none;
+  }
+
+  .escuela {
+    font-size: 1em;
   }
 }
