@@ -253,6 +253,13 @@ a:active {
   text-transform: uppercase;
 }
 
+.disclaimer{
+  color:#fff;
+  font-size: 1em;
+  margin-bottom: 0;
+  padding-bottom:0;
+}
+
 
 /*/////////////////////////// Title hidden >570 ///////////////////////////////*/
 
@@ -526,7 +533,7 @@ footer {
   }
 
   .div-title p {
-    font-size: 1.6em;
+    font-size: 1.7em;
   }
 
   .emoji p {
@@ -620,7 +627,7 @@ footer {
 /*//////////////////////////  858px ///////////////////////////////*/
 @media(max-width:858px) {
   .div-title p {
-    font-size: 1.6em;
+    font-size: 1.5em;
   }
 
   .prices-container {
@@ -774,6 +781,10 @@ footer {
   .whats-diseño {
     margin-left: 0;
   }
+
+  .disclaimer{
+  font-size: 0.8em;
+}
 
 
 }
