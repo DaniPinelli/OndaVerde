@@ -9,7 +9,7 @@ setTimeout(() => {
 
 window.onload = (() => {
 
-    window.addEventListener('scroll', () => {
+   /* window.addEventListener('scroll', () => {
 
         let navbar = document.getElementById('navbar');
 
@@ -17,6 +17,16 @@ window.onload = (() => {
             navbar.classList.add("fixed-bottom");
         } else {
             navbar.classList.remove("fixed-bottom");
+        }
+    });*/
+
+    window.addEventListener('scroll', () => {
+        let navbar = document.getElementById('navbar');
+        let shouldAddClass = window.scrollY > 600;
+        if (shouldAddClass && !navbar.classList.contains('fixed-bottom')) {
+            navbar.classList.add('fixed-bottom');
+        } else if (!shouldAddClass && navbar.classList.contains('fixed-bottom')) {
+            navbar.classList.remove('fixed-bottom');
         }
     });
 
