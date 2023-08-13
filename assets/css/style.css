@@ -911,6 +911,10 @@ footer {
     font-size: 1.5em;
   }
 
+  .escuela {
+    font-size: 1.4em;
+  }
+
 }
 
 
@@ -935,10 +939,6 @@ footer {
   }
 
   .title-hidden h2 {
-    font-size: 1.5em;
-  }
-
-  .escuela {
     font-size: 1.5em;
   }
 
