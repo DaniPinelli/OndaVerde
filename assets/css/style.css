@@ -536,6 +536,10 @@ footer {
     font-size: 1.7em;
   }
 
+  .prices-container{
+    height: 1138px;
+  }
+
   .emoji p {
     margin-top: 0;
     font-size: 2.5em;
@@ -634,10 +638,6 @@ footer {
     font-size: 1.5em;
   }
 
-  .prices-container {
-    height: 978px;
-  }
-
   .color-white {
     font-size: 1.25em;
   }
@@ -721,7 +721,7 @@ footer {
   }
 
   .prices-container {
-    height: 1445px;
+    height: 1899px;
   }
 
 }
