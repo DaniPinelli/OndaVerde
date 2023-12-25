@@ -60,6 +60,10 @@ a:active {
   height: 1100px;
 }
 
+#navbar{
+  background-color:#0b0b0b;
+}
+
 .nav-div {
   background-image: url("../images/nav3.webp");
   height: 1100px;
@@ -178,11 +182,6 @@ a:active {
   margin-bottom: 6rem;
 }
 
-/*.carousel-item {
-  height: 78vh;
-  width: 46vw;
-}*/
-
 .carousel-item img {
   width: auto;
   height: 47rem;
@@ -194,10 +193,8 @@ a:active {
 
 .prices-container {
   height: 900px;
-  background-image: url("../images/bddcars1.webp");
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #0b0b0b
+ 
 }
 
 .prices {
