@@ -535,7 +535,7 @@ footer {
   }
 
   .prices-container{
-    height: 1138px;
+    height: 1188px;
   }
 
   .emoji p {
@@ -700,6 +700,10 @@ footer {
 /*//////////////////////////  740px ///////////////////////////////*/
 @media(max-width:740px) {
 
+  .prices-container {
+    height: 1944px;
+  }
+
   .div-title h2 {
     font-size: 1.8em;
   }
@@ -716,10 +720,6 @@ footer {
   .prices {
     flex-direction: column;
     align-items: center;
-  }
-
-  .prices-container {
-    height: 1899px;
   }
 
 }
@@ -912,6 +912,10 @@ footer {
   .escuela {
     font-size: 1.4em;
   }
+
+  .card-prices p {
+    font-size: 1em;
+}
 
 }
 
