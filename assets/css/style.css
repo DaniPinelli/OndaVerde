@@ -45,7 +45,7 @@ a:active {
 }
 
 .escuela {
-  color: #fff
+  color: #D1D8E3 
 }
 
 .mr-4 {
@@ -61,7 +61,7 @@ a:active {
 }
 
 #navbar{
-  background-color:#0b0b0b;
+  background-color:#0A0A0B;
 }
 
 .nav-div {
@@ -88,14 +88,14 @@ a:active {
 
 .div-title h2 {
   font-family: 'Montserrat', sans-serif;
-  color: whitesmoke;
+  color: #D1D8E3;
   font-size: 2.5em;
 }
 
 .div-title p {
   margin-top: 3rem;
   font-family: 'Montserrat', sans-serif;
-  color: whitesmoke;
+  color: #D1D8E3;
   font-size: 1.90em;
 }
 
@@ -119,6 +119,7 @@ a:active {
   padding-left: 190px;
   padding-right: 190px;
   height: 916px;
+  background-color: #ADB3BC;
 }
 
 .links-container-title,
@@ -133,7 +134,7 @@ a:active {
 .links-container-title h3 {
   font-size: 3.5em;
   font-weight: bolder;
-  color: rgb(9, 192, 55);
+  color: #0A0A0B;
 }
 
 .card {
@@ -162,19 +163,19 @@ a:active {
 
 /*////////////////////////// Slider ////////////////////*/
 .slider-container {
-  background-color: #fffffe;
+  background-color: #D1D8E3;
 }
 
 .title-slider h4 {
   font-size: 3em;
-  color: #5cb85c;
-  text-shadow: 2px 1px 1px green;
+  color: #64D32D;
+  text-shadow: 2px 1px 1px #64D32D;
   text-decoration: underline;
 }
 
 .title-slider p {
   font-size: 1.5em;
-  color: green;
+  color: #64D32D;
 }
 
 .slider-container {
@@ -193,7 +194,7 @@ a:active {
 
 .prices-container {
   height: 900px;
-  background-color: #0b0b0b
+  background-color: #0A0A0B
  
 }
 
@@ -210,7 +211,7 @@ a:active {
 
 .promo-tittle-div1 h5 {
   padding-top: 6rem;
-  color: #fffffe;
+  color: #D1D8E3;
   font-size: 2.5em;
   font-weight: bold;
   text-align: center;
@@ -218,7 +219,7 @@ a:active {
 
 .promo-tittle-div2 h6 {
   margin-top: 2rem;
-  color: #fffffe;
+  color: #D1D8E3;
   font-size: 1.5em;
   font-weight: bold;
   text-align: center;
@@ -230,8 +231,8 @@ a:active {
 }
 
 .card-prices {
-  color: white;
-  background-color: rgb(32, 3, 60);
+  color: #D1D8E3;
+  background-color: #6048C1;
   height: 270px;
   max-width: 284px;
   border: none;
@@ -247,7 +248,7 @@ a:active {
 }
 
 .disclaimer{
-  color:#fff;
+  color:#D1D8E3;
   font-size: 1em;
   margin-top: 20rem;
 }
@@ -269,7 +270,7 @@ a:active {
   padding-right: 0.5rem;
   max-width: 80%;
   font-family: 'Montserrat', sans-serif;
-  color: whitesmoke;
+  color: #D1D8E3;
   position: relative;
   z-index: 100;
   opacity: 0.9;
@@ -314,8 +315,8 @@ a:active {
 
 footer {
   padding-top: 1px;
-  background: #5cb85c;
-  color: white;
+  background: #0A0A0B;
+  color: #ADB3BC;
 }
 
 .nosotros {
@@ -372,7 +373,7 @@ footer {
 }
 
 .color-white {
-  color: white;
+  color: #D1D8E3;
   font-size: 1.5em;
 }
 
@@ -413,7 +414,7 @@ footer {
 
 .webmaster-p {
   font-size: 1.25em;
-  color: #fffffe;
+  color: #D1D8E3;
 }
 
 .linkedin-img {
