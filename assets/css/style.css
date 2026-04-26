@@ -2,8 +2,15 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
-  overflow-x: hidden;
+  overflow-x: hidden; /* CORRECCIÓN IMPORTANTE: Evita el scroll horizontal en todo el sitio */
   min-height: 100vh;
+  width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+/* CORRECCIÓN: Asegura que el HTML tampoco desborde */
+html {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 a:link,
@@ -18,6 +25,7 @@ a:active {
 .container-fluid {
   padding-left: 0;
   padding-right: 0;
+  width: 100%; /* Asegura que los contenedores fluidos no se estiren de más */
 }
 
 
@@ -116,10 +124,13 @@ a:active {
 /*////////////////////////// Links ////////////////////*/
 .container-links {
   padding-top: 1px;
-  padding-left: 190px;
-  padding-right: 190px;
-  height: 916px;
+  /* CORRECCIÓN: Reducido padding lateral excesivo que causaba compresión en pantallas medianas */
+  padding-left: 20px;
+  padding-right: 20px;
+  height: auto; /* CORRECCIÓN: Altura automática para que se adapte al contenido */
+  min-height: 916px;
   background-color: #ADB3BC;
+  padding-bottom: 5rem;
 }
 
 .links-container-title,
@@ -129,19 +140,25 @@ a:active {
 
 .cards-container {
   flex-wrap: wrap;
+  justify-content: center; /* Centra las tarjetas */
 }
 
 .links-container-title h3 {
   font-size: 3.5em;
   font-weight: bolder;
   color: #0A0A0B;
+  text-align: center;
 }
 
 .card {
-  height: 334px;
+  height: auto; /* CORRECCIÓN: Altura automática */
+  min-height: 334px;
   width: 300px;
+  max-width: 100%; /* No supera el ancho de pantalla en móviles muy pequeños */
   border-radius: 14px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card img {
@@ -150,6 +167,7 @@ a:active {
   margin-left: auto;
   margin-right: auto;
   padding-top: 1rem;
+  object-fit: contain; /* Asegura que la imagen no se deforme */
 }
 
 .btn-links {
@@ -183,18 +201,23 @@ a:active {
   margin-bottom: 6rem;
 }
 
+/* CORRECCIÓN INTEGRAL DEL CAROUSEL PARA MÓVILES */
 .carousel-item img {
-  width: auto;
-  height: 47rem;
-  border-radius: 24%;
+  width: 100% !important; /* Fuerza el ancho total */
+  height: auto !important; /* Altura automática para mantener proporción */
+  max-height: 47rem; /* Límite de altura para pantallas grandes */
+  object-fit: cover; /* Cubre el área sin deformar */
+  border-radius: 24px; /* Reducido un poco para que se vea mejor en móviles */
 }
 
 
 /*////////////////////////// Prices ////////////////////*/
 
 .prices-container {
-  height: 900px;
-  background-color: #0A0A0B
+  height: auto; /* CORRECCIÓN: Altura automática */
+  min-height: 900px;
+  background-color: #0A0A0B;
+  padding-bottom: 5rem;
  
 }
 
@@ -203,6 +226,7 @@ a:active {
   margin-left: auto;
   margin-right: auto;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .promo-tittle-div1 {
@@ -233,10 +257,14 @@ a:active {
 .card-prices {
   color: #D1D8E3;
   background-color: #6048C1;
-  height: 270px;
-  max-width: 284px;
+  height: auto; /* CORRECCIÓN: Altura automática */
+  min-height: 270px;
+  width: 284px;
+  max-width: 100%;
   border: none;
   margin-top: 5rem;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .card-prices p {
@@ -300,7 +328,7 @@ a:active {
 .whatsapp {
   position: fixed;
   bottom: 9rem;
-  right: 0;
+  right: 1rem; /* CORRECCIÓN: Separado un poco del borde derecho */
   z-index: 9999;
   width: 4.5rem;
   height: 4.5rem;
@@ -403,6 +431,7 @@ footer {
 .map {
   height: 20rem;
   min-width: 50%;
+  max-width: 100%; /* Asegura que el mapa no desborde */
 }
 
 .webmaster {
@@ -410,6 +439,7 @@ footer {
   justify-content: start;
   background: rgb(32, 3, 60);
   border-radius: 6px;
+  padding: 5px 10px; /* Añadido un poco de padding */
 }
 
 .webmaster-p {
@@ -535,7 +565,8 @@ footer {
   }
 
   .prices-container{
-    height: 1188px;
+    height: auto; /* CORRECCIÓN */
+    min-height: 1188px;
   }
 
   .emoji p {
@@ -573,7 +604,8 @@ footer {
   }
 
   .container-links {
-    height: 556px;
+    height: auto; /* CORRECCIÓN */
+    min-height: 556px;
     padding-left: 0;
     padding-right: 0;
   }
@@ -593,12 +625,15 @@ footer {
 
 
   .card {
-    height: 236px;
+    height: auto; /* CORRECCIÓN */
+    min-height: 236px;
     width: 248px;
   }
 
+  /* CORRECCIÓN: Ajuste de altura del carrusel en tablets */
   .carousel-item img {
-    height: 616px;
+    height: auto !important;
+    max-height: 616px;
   }
 
   .card-prices p {
@@ -687,7 +722,8 @@ footer {
   }
 
   .container-links {
-    height: 680px;
+    height: auto; /* CORRECCIÓN */
+    min-height: 680px;
   }
 
   .disclaimer{
@@ -701,7 +737,8 @@ footer {
 @media(max-width:740px) {
 
   .prices-container {
-    height: 1944px;
+    height: auto; /* CORRECCIÓN */
+    min-height: 1944px;
   }
 
   .div-title h2 {
@@ -750,17 +787,21 @@ footer {
 @media(max-width:644px) {
   .foot {
     flex-direction: column;
+    align-items: center; /* Centra el contenido */
   }
 
   .map-div {
-    margin-top: 0;
+    margin-top: 2rem; /* Añadido margen superior */
+    width: 100%; /* Ocupa todo el ancho */
     max-width: 90vw;
     margin-left: auto;
     margin-right: auto;
+    align-items: center; /* Centra el mapa */
   }
 
   .sociales {
     margin-top: 0;
+    text-align: center; /* Centra el texto */
   }
 
   .redes {
@@ -769,23 +810,29 @@ footer {
     justify-content: center;
     flex-direction: column;
     padding-bottom: 0;
+    align-items: center; /* Centra las redes */
   }
 
   .redes-p {
     display: flex;
+    margin-top: 0.5rem;
   }
 
   .horarios-div {
     padding-top: 3rem;
+    max-width: 90%; /* Más ancho en móviles */
+    text-align: center;
   }
 
   .webmaster {
     flex-direction: column;
-
+    align-items: center; /* Centra el webmaster */
+    text-align: center;
   }
 
   .whats-diseño {
     margin-left: 0;
+    margin-top: 0.5rem;
   }
 
   .disclaimer{
@@ -858,17 +905,21 @@ footer {
     margin-top: 2rem;
   }
 
+  /* CORRECCIÓN: Ajuste de altura del carrusel en móviles */
   .carousel-item img {
-    height: 514px;
+    height: auto !important;
+    max-height: 514px;
   }
 
   .container-links {
-    height: 964px;
+    height: auto; /* CORRECCIÓN */
+    min-height: 964px;
   }
 
   .whatsapp {
     width: 3.5rem;
     height: 3.5rem;
+    bottom: 5rem; /* Subido un poco para no tapar el menú si está fixed */
   }
 }
 
@@ -878,12 +929,13 @@ footer {
     margin-top: 380px;
   }
 
-  .navbar {
+  /* Si decides usar el menú fijo abajo en móviles, esto ayuda */
+  /*.navbar {
     position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 1000;
-  }
+  }*/
 }
 
 /*////////////////////////// 526px ///////////////////////////////*/
@@ -926,8 +978,10 @@ footer {
     font-size: 1.25em;
   }
 
+  /* CORRECCIÓN: Altura carrusel en móviles pequeños */
   .carousel-item img {
-    height: 370px;
+    height: auto !important;
+    max-height: 370px;
   }
 
 }
