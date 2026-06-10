@@ -9,8 +9,13 @@
   <meta name="description" content="Escuela de Conductores Onda Verde">
   <meta name="keywords" content="escuelas de conducir Rosario, autoescuela Rosario, escuela de conductores Rosario, escuelas de manejo Rosario, escuela conductores zona norte Rosario, academia conductores zona norte Rosario, clases de manejo Rosario, cursos de manejo en Rosario, sacar licencia de conducir, turnos para carnet de conducir">
 
-  <!-- Bootstrap 4.6 -->
-  <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+  <!-- Preconexiones a CDNs usados -->
+  <link rel="preconnect" href="https://code.jquery.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Bootstrap CSS: carga normal pero con preload para no bloquear -->
+  <link rel="preload" href="./assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./assets/css/bootstrap.min.css"></noscript>
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Escuela de Conductores Onda Verde</title>
 </head>
@@ -20,7 +25,7 @@
   <!-- ===== NAVBAR ===== -->
   <div class="container-fluid" id="up">
     <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-      <img loading="lazy" src="./assets/images/logoCars.jpg" class="navbar-brand logo"
+      <img src="./assets/images/logoCars.jpg" class="navbar-brand logo"
         alt="Escuela de conductores Onda Verde logo" />
       <h1 class="escuela">
         <span class="conductores">ESCUELA DE CONDUCTORES </span><br>ONDA VERDE
@@ -117,37 +122,37 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img loading="lazy" src="./assets/images/slider1.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img fetchpriority="high" src="./assets/images/slider1.webp" class="d-block w-100" width="800" height="600" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider2.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider2.webp" class="d-block w-100" width="800" height="600" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider3.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider3.webp" class="d-block w-100" width="800" height="600" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider4.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider4.webp" class="d-block w-100" width="800" height="600" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider5.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider5.webp" class="d-block w-100" width="800" height="600" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider6.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider6.webp" class="d-block w-100" width="800" height="600" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider7.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider7.webp" class="d-block w-100" width="800" height="600" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider8.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider8.webp" class="d-block w-100" width="800" height="600" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider9.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider9.webp" class="d-block w-100" width="800" height="600" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider10.png" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider10.png" class="d-block w-100" width="800" height="600" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider11.png" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider11.png" class="d-block w-100" width="800" height="600" alt="Alumno aprendió a manejar" />
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -378,11 +383,11 @@
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous" defer></script>
   <!-- Bootstrap 4.6 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous" defer></script>
   <script src="app.js" defer></script>
 
 </body>
