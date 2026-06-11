@@ -37,9 +37,8 @@
   <link rel="preload" href="./assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="./assets/css/bootstrap.min.css"></noscript>
 
-  <!-- style.css no bloqueante -->
-  <link rel="preload" href="./assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="./assets/css/style.css"></noscript>
+  <!-- style.css bloqueante (necesario para evitar CLS) -->
+  <link rel="stylesheet" href="./assets/css/style.css">
 
   <title>Escuela de Conductores Onda Verde</title>
 </head>
@@ -396,6 +395,7 @@
         <div class="webmaster">
           <a href="https://www.linkedin.com/in/daniel-pinelli-fullstack/" class="webmaster-p deco-none">
             <img loading="lazy" class="linkedin-img deco-none" src="./assets/images/linkedin1.webp"
+              width="28" height="28"
               alt="LinkedIn Daniel Pinelli desarrollo web" />
             Desarrollo Web
           </a>
