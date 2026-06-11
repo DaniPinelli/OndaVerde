@@ -9,14 +9,38 @@
   <meta name="description" content="Escuela de Conductores Onda Verde">
   <meta name="keywords" content="escuelas de conducir Rosario, autoescuela Rosario, escuela de conductores Rosario, escuelas de manejo Rosario, escuela conductores zona norte Rosario, academia conductores zona norte Rosario, clases de manejo Rosario, cursos de manejo en Rosario, sacar licencia de conducir, turnos para carnet de conducir">
 
+  <!-- CSS crítico inline para evitar flash sin estilos -->
+  <style>
+    body { margin: 0; background-color: #0A0A0B; }
+    #navbar { background-color: #0A0A0B; }
+    .main-container { height: 1100px; background-color: #198754; }
+    .nav-div {
+      background-image: url("./assets/images/nav3.webp");
+      height: 1100px;
+      background-position: top;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .escuela { color: #D1D8E3; }
+    .logo { height: 4rem; width: auto; margin: 0; }
+  </style>
+
   <!-- Preconexiones a CDNs usados -->
   <link rel="preconnect" href="https://code.jquery.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
-  <!-- Bootstrap CSS: carga normal pero con preload para no bloquear -->
+  <!-- Preload imagen hero (LCP) -->
+  <link rel="preload" as="image" href="./assets/images/nav3.webp"
+    media="(min-width: 577px)">
+
+  <!-- Bootstrap CSS no bloqueante -->
   <link rel="preload" href="./assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="./assets/css/bootstrap.min.css"></noscript>
-  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- style.css no bloqueante -->
+  <link rel="preload" href="./assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./assets/css/style.css"></noscript>
+
   <title>Escuela de Conductores Onda Verde</title>
 </head>
 
