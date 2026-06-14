@@ -4,41 +4,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="./assets/images/favi.png" alt="Escuela de conductores Onda Verde favicon" />
-  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="./assets/images/favi.webp" />
+  <meta name="theme-color" content="#0A0A0B">
   <meta name="description" content="Escuela de Conductores Onda Verde">
-  <meta name="keywords" content="escuelas de conducir Rosario, autoescuela Rosario, escuela de conductores Rosario, escuelas de manejo Rosario, escuela conductores zona norte Rosario, academia conductores zona norte Rosario, clases de manejo Rosario, cursos de manejo en Rosario, sacar licencia de conducir, turnos para carnet de conducir">
+  <meta name="keywords" content="escuelas de conducir Rosario, autoescuela Rosario, escuela de conductores Rosario, escuelas de manejo Rosario, clases de manejo Rosario, cursos de manejo en Rosario, sacar licencia de conducir">
 
-  <!-- CSS crítico inline para evitar flash sin estilos -->
+  <!--
+  ==========================================================
+  CSS CRÍTICO INLINE
+  Contiene TODOS los estilos visibles above-the-fold para que
+  style.css pueda cargarse de forma diferida sin CLS.
+  ==========================================================
+  -->
   <style>
-    body { margin: 0; background-color: #0A0A0B; }
-    #navbar { background-color: #0A0A0B; }
-    .main-container { height: 1100px; background-color: #198754; }
-    .nav-div {
-      background-image: url("./assets/images/nav3.webp");
-      height: 1100px;
-      background-position: top;
-      background-repeat: no-repeat;
-      background-size: cover;
+    *, *::before, *::after { box-sizing: border-box; }
+    html { overflow-x: hidden; width: 100%; }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden; min-height: 100vh; width: 100%;
+      background-color: #0A0A0B;
     }
-    .escuela { color: #D1D8E3; }
+    :root { --section-padding: 5rem; }
+
+    /* Navbar */
+    .container-fluid { padding-left: 0; padding-right: 0; width: 100%; }
+    #navbar { background-color: #0A0A0B; }
+    .hamburguer { border: none; }
     .logo { height: 4rem; width: auto; margin: 0; }
+    #icon-hamburguer { font-size: 2em; }
+    .navbar ul li a { font-size: 1.75em; display: flex; justify-content: center; }
+    .escuela { color: #D1D8E3; }
+    .mr-4 { margin-right: 4rem; }
+
+    /* Hero */
+    .main-container { height: 1100px; position: relative; overflow: hidden; }
+    .nav-div {
+      height: 1100px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* La imagen hero ahora es un <img> absoluto, no background-image */
+    .nav-div-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      z-index: 0;
+    }
+    .nav-div > *:not(.nav-div-img) { position: relative; z-index: 1; }
+    .rigth-side { height: 1100px; }
+    .div-title { margin-top: 9rem; max-width: 65%; height: 500px; margin-left: auto; margin-right: auto; }
+    .div-title h2 { color: #D1D8E3; font-size: 2.5em; }
+    .div-title p { margin-top: 3rem; color: #D1D8E3; font-size: 1.90em; }
+    .emoji { max-width: 65%; height: auto; margin: 10rem auto 0; justify-content: space-around; }
+    .emoji p { font-size: 2.8em; }
+    .title-hidden, .text-main-hidden { display: none; }
+    .text-main-hidden {
+      margin-top: 400px; margin-left: auto; margin-right: auto;
+      padding: 1rem 0.5rem 0; max-width: 80%; color: #D1D8E3;
+      position: relative; z-index: 100; opacity: 0.9; justify-content: center;
+    }
+    .title-main-hide h2 { font-size: 1.5em; }
+    .title-main-hide p { font-size: 1.25em; }
+    .emoji-hidden { margin-top: 0; z-index: 100; opacity: 0.9; margin-left: auto; margin-right: auto; max-width: 80%; font-size: 1.5em; justify-content: space-around; }
+
+    /* Responsive crítico */
+    @media (max-width: 1882px) {
+      .div-title { margin-top: 6rem; }
+      .main-container, .nav-div, .rigth-side { height: 900px; }
+    }
+    @media (max-width: 577px) {
+      .title-hidden, .text-main-hidden { display: flex; }
+      .hamburguer { font-size: 0.75rem; border: none; }
+      .rigth-side, .div-title, .emoji { display: none; }
+      .main-container, .nav-div { height: 730px; }
+      :root { --section-padding: 3rem; }
+      #navbar { position: fixed; bottom: 0; top: auto; left: 0; width: 100%; z-index: 1050; flex-wrap: wrap; }
+      #navbarSupportedContent { order: -1; }
+      body { padding-bottom: 5rem; }
+    }
+    @media (max-width: 526px) {
+      .main-container, .nav-div { height: 686px; }
+    }
   </style>
 
-  <!-- Preconexiones a CDNs usados -->
+  <!-- Preconexiones -->
   <link rel="preconnect" href="https://code.jquery.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
-  <!-- Preload imagen hero (LCP) -->
-  <link rel="preload" as="image" href="./assets/images/nav3.webp"
-    media="(min-width: 577px)">
-
-  <!-- Bootstrap CSS no bloqueante -->
+  <!-- Bootstrap CSS diferido -->
   <link rel="preload" href="./assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="./assets/css/bootstrap.min.css"></noscript>
 
-  <!-- style.css bloqueante (necesario para evitar CLS) -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <!-- style.css diferido (el CSS crítico ya está inline arriba) -->
+  <link rel="preload" href="./assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./assets/css/style.css"></noscript>
 
   <title>Escuela de Conductores Onda Verde</title>
 </head>
@@ -48,7 +111,12 @@
   <!-- ===== NAVBAR ===== -->
   <div class="container-fluid" id="up">
     <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+      <!--
+        IMPORTANTE: logoCars.webp pesa 1.4MB — reducirlo a ~10KB en squoosh.app:
+        Resize → 160×113px, WebP calidad 80. Subir como logoCars.webp.
+      -->
       <img src="./assets/images/logoCars.webp"
+        width="77" height="54"
         class="navbar-brand logo"
         alt="Escuela de conductores Onda Verde logo" />
       <h1 class="escuela">
@@ -59,7 +127,6 @@
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Abrir menú">
         <span class="navbar-toggler-icon" id="icon-hamburguer"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
@@ -87,8 +154,21 @@
   <div class="container-fluid bg-success main-container">
     <div class="row mr-0 ml-0">
 
-      <!-- Columna izquierda: imagen de fondo + texto en móvil -->
+      <!-- Columna izquierda: imagen hero como <img> real (LCP) -->
       <div class="col-12 col-sm-6 nav-div" id="main">
+        <!--
+          nav3.webp como <img> real: el navegador puede aplicar fetchpriority
+          y descubrirla en el HTML inicial, mejorando el LCP significativamente.
+        -->
+        <img
+          src="./assets/images/nav3.webp"
+          class="nav-div-img"
+          fetchpriority="high"
+          alt=""
+          aria-hidden="true"
+          width="800" height="1100"
+          decoding="async" />
+
         <div class="text-main-hidden bg-success justify-content-center">
           <div class="title-main-hide">
             <h2 class="pl-2 pr-2 d-flex justify-content-center">
@@ -146,40 +226,42 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img fetchpriority="high"
-            src="./assets/images/slider1.webp"
+          <img src="./assets/images/slider1.webp"
             class="d-block w-100"
+            width="720" height="697"
             alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider2.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider2.webp"
+            class="d-block w-100" width="720" height="697"
+            alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider3.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider3.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider4.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider4.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider5.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider5.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider6.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider6.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider7.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider7.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider8.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider8.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider9.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider9.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider10.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider10.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
         </div>
         <div class="carousel-item">
-          <img loading="lazy" src="./assets/images/slider11.webp" class="d-block w-100" alt="Alumno aprendió a manejar" />
+          <img loading="lazy" src="./assets/images/slider11.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -276,6 +358,7 @@
       <div class="links-cards second">
         <div class="card mt-3 mb-3">
           <img loading="lazy" src="./assets/images/psicofisico.webp"
+            width="192" height="192"
             class="card-img-top mt-3"
             alt="Turno para sacar licencia para conducir" />
           <div class="card-body">
@@ -290,6 +373,7 @@
       <div class="links-cards fourth">
         <div class="card mt-3 mb-3">
           <img loading="lazy" src="./assets/images/manual.webp"
+            width="192" height="192"
             class="card-img-top mt-3"
             alt="Material de estudio para aprender a manejar" />
           <div class="card-body">
@@ -304,6 +388,7 @@
       <div class="links-cards first">
         <div class="card mt-3 mb-3">
           <img loading="lazy" src="./assets/images/simulador.webp"
+            width="192" height="192"
             class="card-img-top mt-3"
             alt="Simulador teórico para sacar carnet de conducir" />
           <div class="card-body">
@@ -337,6 +422,7 @@
             <div class="sociales">
               <a href="https://www.facebook.com/ondaverdeescueladeconductores/" class="deco-none">
                 <img loading="lazy" class="facebook deco-none" src="./assets/images/facebook1.webp"
+                  width="64" height="64"
                   alt="Facebook Onda Verde" />
                 <p class="color-white redes-p">ondaverdeescueladeconductores</p>
               </a>
@@ -344,6 +430,7 @@
             <div class="sociales insta-div">
               <a href="https://www.instagram.com/ondaverdeescuela/" class="deco-none">
                 <img loading="lazy" class="seguinos-img deco-none" src="./assets/images/instagram.webp"
+                  width="64" height="64"
                   alt="Instagram Onda Verde" />
                 <p class="color-white redes-p">ondaverdeescuela</p>
               </a>
@@ -351,6 +438,7 @@
             <div class="sociales whats-div">
               <a href="https://api.whatsapp.com/send?phone=5493413642175" class="deco-none">
                 <img loading="lazy" class="seguinos-img whats-img deco-none" src="./assets/images/whats1.webp"
+                  width="64" height="64"
                   alt="WhatsApp Onda Verde" />
                 <p class="color-white redes-p">341 3642175</p>
               </a>
@@ -390,6 +478,8 @@
         <p>Copyright © 2022 Escuela de Conductores Onda Verde</p>
 
       </div>
+
+      
 
     </div>
 
