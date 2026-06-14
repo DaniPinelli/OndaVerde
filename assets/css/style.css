@@ -98,11 +98,24 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .nav-div {
-  background-image: url("../images/nav3.webp");
   height: 1100px;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-div-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  z-index: 0;
+}
+
+.nav-div > *:not(.nav-div-img) {
+  position: relative;
+  z-index: 1;
 }
 
 .rigth-side {
