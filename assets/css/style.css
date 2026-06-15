@@ -201,9 +201,6 @@ a:link, a:visited, a:hover, a:active {
   padding-bottom: var(--section-padding);
 }
 
-.slider-container {
-  /* solo centra el contenido, sin color ni padding propio */
-}
 
 .title-slider h4 {
   font-size: 3em;
@@ -377,13 +374,30 @@ a:link, a:visited, a:hover, a:active {
    FOOTER
    ===================================================== */
 
+/* Asegura el comportamiento nativo de bloques apilados */
+.horarios-div {
+  width: 100%;
+  max-width: 70%;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  clear: both;
+}
+
+/* Evita cualquier solapamiento en pantallas gigantes */
 footer {
   background: #0A0A0B;
   color: #ADB3BC;
-  padding-top: 0;
-  margin-top: 0;
-  border: none;
-  outline: none;
+  padding-bottom: 2rem;
+  width: 100%;
+  position: relative;
+  display: block;
+}
+
+.last-container {
+  width: 100%;
+  max-width: 1200px; /* Centra el contenido en pantallas ultra anchas */
+  margin: 0 auto;
 }
 
 .nosotros {
@@ -396,8 +410,11 @@ footer {
 }
 
 .foot {
+  display: flex;       /* Agrega esto si no lo tiene */
+  flex-wrap: wrap;     /* Permite que se acomode si es necesario */
   margin-top: 5rem;
   margin-bottom: 2rem;
+  width: 100%;         /* Asegura todo el ancho */
 }
 
 .redes,
@@ -433,8 +450,13 @@ footer {
 }
 
 .horarios-div {
-  max-width: 70%;
+  width: 100%;         /* Ocupa todo el ancho horizontal */
+  max-width: 70%;      /* Mantiene tu diseño centrado */
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: var(--section-padding);
+  clear: both;         /* Evita que cualquier elemento de arriba se le encime */
+  display: block;      /* Asegura su comportamiento de bloque independiente */
 }
 
 .horario-p {
@@ -442,13 +464,25 @@ footer {
 }
 
 .map-div {
+  display: flex;
   flex-direction: column;
+  height: auto;        /* Cambia a auto para que se estire según el mapa */
+}
+
+.map-wrapper {
+  width: 100%;
+  min-height: 320px; /* Al reservar este alto mínimo, lo de abajo NUNCA se va a superponer */
+  background-color: #151518; /* Fondo oscuro de cortesía mientras carga el mapa */
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 1rem;
 }
 
 .map {
-  height: 20rem;
-  min-width: 50%;
-  max-width: 100%;
+  width: 100%;
+  height: 320px; /* Alto fijo para el iframe */
+  border: none;
+  display: block;
 }
 
 .webmaster {
@@ -632,6 +666,14 @@ body.navbar-at-bottom {
   .horarios-div { padding-top: 3rem; max-width: 90%; text-align: center; }
   .webmaster { flex-direction: column; align-items: center; text-align: center; }
   .disclaimer { font-size: 0.8em; }
+  @media (max-width: 644px) {
+  /* ... tus estilos actuales del media query ... */
+
+  .map-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+}
 }
 
 @media (max-width: 577px) {
