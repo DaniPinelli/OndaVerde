@@ -1,462 +1,323 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="./assets/images/favi.webp" />
-  <meta name="theme-color" content="#0A0A0B">
-  <meta name="description" content="Escuela de Conductores Onda Verde">
-  <meta name="keywords" content="escuelas de conducir Rosario, autoescuela Rosario, escuela de conductores Rosario, escuelas de manejo Rosario, clases de manejo Rosario, cursos de manejo en Rosario, sacar licencia de conducir">
+  <meta name="theme-color" content="#0b0d10" />
+  <meta name="description" content="Escuela de Conductores Onda Verde — clases de manejo en Rosario y alrededores, con y sin auto para rendir, cursos teóricos y acompañamiento en todo el trámite." />
+  <meta name="keywords" content="escuelas de conducir Rosario, autoescuela Rosario, escuela de conductores Rosario, escuelas de manejo Rosario, clases de manejo Rosario, cursos de manejo en Rosario, sacar licencia de conducir" />
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html { overflow-x: hidden; width: 100%; }
-    body {
-      margin: 0; padding: 0;
-      font-family: 'Montserrat', sans-serif;
-      overflow-x: hidden; min-height: 100vh; width: 100%;
-      background-color: #0A0A0B;
-    }
-    :root { --section-padding: 5rem; }
-    .container-fluid { padding-left: 0; padding-right: 0; width: 100%; }
-    #navbar { background-color: #0A0A0B; }
-    .hamburguer { border: none; }
-    .logo { height: 4rem; width: auto; margin: 0; }
-    #icon-hamburguer { font-size: 2em; }
-    .navbar ul li a { font-size: 1.75em; display: flex; justify-content: center; }
-    .escuela { color: #D1D8E3; }
-    .mr-4 { margin-right: 4rem; }
-    .main-container { height: 1100px; position: relative; overflow: hidden; }
-    .nav-div { height: 1100px; position: relative; overflow: hidden; }
-    .nav-div-img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: top; z-index: 0;
-    }
-    .nav-div > *:not(.nav-div-img) { position: relative; z-index: 1; }
-    .rigth-side { height: 1100px; }
-    .div-title { margin-top: 9rem; max-width: 65%; height: 500px; margin-left: auto; margin-right: auto; }
-    .div-title h2 { color: #D1D8E3; font-size: 2.5em; }
-    .div-title p { margin-top: 3rem; color: #D1D8E3; font-size: 1.90em; }
-    .emoji { max-width: 65%; height: auto; margin: 10rem auto 0; justify-content: space-around; }
-    .emoji p { font-size: 2.8em; }
-    .title-hidden, .text-main-hidden { display: none; }
-    .text-main-hidden {
-      margin-top: 400px; margin-left: auto; margin-right: auto;
-      padding: 1rem 0.5rem 0; max-width: 80%; color: #D1D8E3;
-      position: relative; z-index: 100; opacity: 0.9; justify-content: center;
-    }
-    .title-main-hide h2 { font-size: 1.5em; }
-    .title-main-hide p { font-size: 1.25em; }
-    .emoji-hidden { margin-top: 0; z-index: 100; opacity: 0.9; margin-left: auto; margin-right: auto; max-width: 80%; font-size: 1.5em; justify-content: space-around; }
-    @media (max-width: 1882px) {
-      .div-title { margin-top: 6rem; }
-      .main-container, .nav-div, .rigth-side { height: 900px; }
-    }
-    @media (max-width: 577px) {
-      .title-hidden, .text-main-hidden { display: flex; }
-      .hamburguer { font-size: 0.75rem; border: none; }
-      .rigth-side, .div-title, .emoji { display: none; }
-      .main-container, .nav-div { height: 730px; }
-      :root { --section-padding: 3rem; }
-      #navbar { position: fixed; bottom: 0; top: auto; left: 0; width: 100%; z-index: 1050; flex-wrap: wrap; }
-      #navbarSupportedContent { order: -1; }
-      body { padding-bottom: 5rem; }
-    }
-    @media (max-width: 526px) {
-      .main-container, .nav-div { height: 686px; }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="preconnect" href="https://code.jquery.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="./assets/css/style.css" />
 
-  <link rel="preload" href="./assets/css/bootstrap-custom.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="./assets/css/bootstrap-custom.min.css"></noscript>
-
-  <link rel="preload" href="./assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="./assets/css/style.css"></noscript>
-
-  <title>Escuela de Conductores Onda Verde</title>
+  <title>Escuela de Conductores Onda Verde | Rosario</title>
 </head>
-
 <body>
 
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
   <!-- ===== NAVBAR ===== -->
-  <div class="container-fluid" id="up">
-    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-      <div class="navbar-left">
-        <img src="./assets/images/logoCars.webp"
-        width="77" height="54"
-        class="navbar-brand logo"
-        alt="Escuela de conductores Onda Verde logo" />
-      </div>
+  <header class="site-header" id="site-header">
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="#main" class="nav__brand">
+        <img src="./assets/images/logoCars.webp" width="40" height="40" alt="" class="nav__logo" />
+        <span class="nav__title">
+          <span class="nav__title--full">Onda Verde</span>
+        </span>
+      </a>
 
-      <div class="navbar-center">
-        <h1 class="escuela">
-          <span class="desktop-title">ESCUELA DE CONDUCTORES ONDA VERDE</span>
-          <span class="mobile-title">ONDA VERDE</span>
-        </h1>
-      </div>
-
-      <div class="navbar-right">
-      <button class="navbar-toggler hamburguer" type="button"
-        data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Abrir menú">
-        <span class="navbar-toggler-icon" id="icon-hamburguer"></span>
+      <button class="nav__toggle" id="navToggle" type="button"
+        aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
       </button>
-      </div>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link ml-5 mr-4" href="#main">Inicio <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link ml-5 mr-4" href="#students">Alumnos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link ml-5 mr-4" href="#our-prices">Promos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link ml-5 mr-4" href="#links">Enlaces</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link ml-5 mr-4" href="#us">Contacto</a>
-          </li>
+
+      <div class="nav__menu" id="navMenu">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#main">Inicio</a></li>
+          <li><a class="nav__link" href="#students">Alumnos</a></li>
+          <li><a class="nav__link" href="#our-prices">Promos</a></li>
+          <li><a class="nav__link" href="#links">Enlaces</a></li>
+          <li><a class="nav__link" href="#us">Contacto</a></li>
         </ul>
+        <a class="btn btn--sm btn--primary nav__cta" href="https://api.whatsapp.com/send?phone=5493413642175">
+          Escribinos
+        </a>
       </div>
     </nav>
-  </div>
+  </header>
 
+  <main>
 
-  <!-- ===== HERO / MAIN ===== -->
-  <div class="container-fluid bg-success main-container">
-    <div class="row mr-0 ml-0">
-
-      <div class="col-12 col-sm-6 nav-div" id="main">
-        <img
-          src="./assets/images/nav3.webp"
-          class="nav-div-img"
-          fetchpriority="high"
-          alt=""
-          aria-hidden="true" />
-
-        <div class="text-main-hidden bg-success justify-content-center">
-          <div class="title-main-hide">
-            <h2 class="pl-2 pr-2 d-flex justify-content-center">
-              Somos especialistas en casos difíciles, 😇 tenemos más paciencia que cualquiera 100% garantizado! 🤗
-            </h2>
-            <p class="pl-2 pr-2 optional-text">
-              Te acompañamos en todo momento, logrando que tu experiencia sea óptima.
-            </p>
-            <div class="emoji-hidden bg-success d-flex">
-              <p>&#128663;</p>
-              <p>👏🏻</p>
-              <p>&#127941;</p>
-              <p>🙏🏻</p>
-              <p>&#128640;</p>
-              <p>&#127891;</p>
-            </div>
-          </div>
-        </div>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="main">
+      <div class="hero__media" aria-hidden="true">
+        <img src="./assets/images/nav3.webp" alt="" class="hero__img" fetchpriority="high" />
+        <div class="hero__scrim"></div>
       </div>
 
-      <div class="col-6 rigth-side">
-        <div class="div-title">
-          <h2>
-            Somos especialistas en casos difíciles, 😇 tenemos más paciencia que cualquiera 100% garantizado! 🤗
-          </h2>
-          <p>
-            <span class="text-main">Te acompañamos en todo momento, hasta que obtengas tu licencia.</span>
-            Nuestra secretaria va a estar todo el tiempo monitoreando tu trámite y tu aprendizaje. Nuestros
-            instructores se van a ocupar de que en cada clase puedas aprender a tu ritmo, logrando que tu
-            experiencia sea óptima.
-          </p>
-        </div>
-        <div class="emoji d-flex">
-          <p>&#128663;</p>
-          <p>👏🏻</p>
-          <p>&#127941;</p>
-          <p>🙏🏻</p>
-          <p>&#128640;</p>
-          <p>&#127891;</p>
-        </div>
-      </div>
+      <div class="hero__content">
+        <p class="eyebrow">Escuela de conductores en Rosario</p>
+        <h1 class="hero__title">
+          Especialistas en casos difíciles.<br />
+          Más paciencia que cualquiera, garantizado. <span aria-hidden="true">🤗</span>
+        </h1>
+        <p class="hero__text">
+          Te acompañamos en todo momento, hasta que obtengas tu licencia. Nuestra secretaría
+          monitorea tu trámite de principio a fin y nuestros instructores se ocupan de que en
+          cada clase aprendas a tu ritmo.
+        </p>
 
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="https://api.whatsapp.com/send?phone=5493413642175">
+            Consultar por WhatsApp
+          </a>
+          <a class="btn btn--ghost" href="#our-prices">Ver promos</a>
+        </div>
+
+        <ul class="hero__tags" aria-hidden="true">
+          <li>🚙</li><li>👏🏻</li><li>🏅</li><li>🙏🏻</li><li>🚀</li><li>🎓</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== SEPARADOR "ONDA VERDE" ===== -->
+    <div class="wave" role="presentation">
+      <span class="wave__dot"></span><span class="wave__dot"></span><span class="wave__dot"></span>
+      <span class="wave__dot"></span><span class="wave__dot"></span><span class="wave__dot"></span>
+      <span class="wave__dot"></span><span class="wave__dot"></span><span class="wave__dot"></span>
+      <span class="wave__dot"></span><span class="wave__dot"></span><span class="wave__dot"></span>
     </div>
-  </div>
 
-
-  <!-- ===== SLIDER / OPINIONES ===== -->
-  <div class="slider-outer">
-    <div class="container slider-container">
-      <div class="title-slider mt-5 mb-2">
-        <h4 id="students">Opiniones de alumnos:</h4>
-        <p>(Divinos ellos 😊)</p>
+    <!-- ===== OPINIONES ===== -->
+    <section class="section" id="students">
+      <div class="section__head">
+        <h2 class="section__title">Opiniones de alumnos</h2>
+        <p class="section__subtitle">Divinos ellos <span aria-hidden="true">😊</span></p>
       </div>
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="./assets/images/slider1.webp"
-              class="d-block w-100"
-              alt="Alumno aprendió a manejar" />
-          </div>
-          <div class="carousel-item">
-            <img loading="lazy" src="./assets/images/slider2.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
-          </div>
-          <div class="carousel-item">
-            <img loading="lazy" src="./assets/images/slider3.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
-          </div>
-          <div class="carousel-item">
-            <img loading="lazy" src="./assets/images/slider4.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
-          </div>
-          <div class="carousel-item">
-            <img loading="lazy" src="./assets/images/slider5.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
-          </div>
-          <div class="carousel-item">
-            <img loading="lazy" src="./assets/images/slider6.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
-          </div>
-          <div class="carousel-item">
-            <img loading="lazy" src="./assets/images/slider7.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
-          </div>
-          <div class="carousel-item">
-            <img loading="lazy" src="./assets/images/slider8.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
-          </div>
-          <div class="carousel-item">
-            <img loading="lazy" src="./assets/images/slider9.webp" class="d-block w-100" width="720" height="697" alt="Alumno aprendió a manejar" />
-          </div>
-          </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Siguiente</span>
-        </a>
-      </div>
-    </div>
-  </div>
 
-
-  <!-- ===== PRECIOS ===== -->
-  <div class="container-fluid prices-container">
-    <div class="promo-tittle-div1">
-      <h5 id="our-prices">🔥 Nuestras Promos 🔥</h5>
-    </div>
-    <div class="prices">
-
-      <div class="card-prices">
-        <div class="card-body">
-          <strong class="card-title prices-title">🚙 "Promo Mini"</strong>
-          <p class="card-text pt-2">
-            <strong>6 clases</strong> $210.900 desde nuestro local o tres horas a domicilio $304.000
-          </p>
+      <!-- Un solo carrusel: tablet / desktop -->
+      <div class="carousel-wrap carousel-wrap--single">
+        <div class="carousel" data-carousel>
+          <div class="carousel__track" data-carousel-track>
+            <div class="carousel__slide"><img src="./assets/images/slider1.webp" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider2.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider3.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider4.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider5.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider6.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider7.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider8.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider9.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+          </div>
+          <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Anterior">‹</button>
+          <button class="carousel__arrow carousel__arrow--next" type="button" data-carousel-next aria-label="Siguiente">›</button>
+          <div class="carousel__dots" data-carousel-dots></div>
         </div>
       </div>
 
-      <div class="card-prices">
-        <div class="card-body">
-          <strong class="card-title prices-title">🏎️ "Rápida"</strong>
-          <p class="card-text pt-2">
-            <strong>10 clases</strong> $329.000 desde nuestro local o cinco horas a domicilio $483.500
-          </p>
-        </div>
-      </div>
-
-      <div class="card-prices">
-        <div class="card-body">
-          <strong class="card-title prices-title">🥇 "Manejo Yo"</strong>
-          <p class="card-text pt-2">
-            <strong>10 clases + curso teórico y auto para rendir</strong> $409.600 / $582.000 a domicilio
-          </p>
-        </div>
-      </div>
-
-      <div class="card-prices">
-        <div class="card-body">
-          <strong class="card-title prices-title">🏆 "Manejo Big"</strong>
-          <p class="card-text pt-2">
-            <strong>15 clases + curso teórico y auto para rendir</strong> $531.300 / $734.000 a domicilio
-          </p>
-        </div>
-      </div>
-
-      <div class="card-prices">
-        <div class="card-body">
-          <strong class="card-title prices-title">👑 "Super"</strong>
-          <p class="card-text pt-2">
-            <strong>20 clases + curso teórico y auto para rendir</strong> $636.000 / $931.700 a domicilio
-          </p>
-        </div>
-      </div>
-
-      <div class="card-prices">
-        <div class="card-body">
-          <strong class="card-title prices-title">💎 "Full"</strong>
-          <p class="card-text pt-2">
-            <strong>30 clases + curso teórico y auto para rendir</strong> $939.000 / $1.204.000 a domicilio
-          </p>
-        </div>
-      </div>
-
-    </div>
-    <p class="d-flex justify-content-center disclaimer">
-      * Los precios están sujetos a modificación sin previo aviso
-    </p>
-  </div>
-
-
-  <!-- ===== ENLACES ===== -->
-  <div class="container-fluid container-links" id="links">
-    <div class="links-container-title d-flex justify-content-center">
-      <h3 class="text-center font-weight-light"><strong>Enlaces útiles 🤓</strong></h3>
-    </div>
-    <div class="cards-container d-flex justify-content-around links-container">
-
-      <div class="links-cards second">
-        <div class="card mt-3 mb-3">
-          <img loading="lazy" src="./assets/images/psicofisico.webp"
-            width="192" height="192"
-            class="card-img-top mt-3"
-            alt="Turno para sacar licencia para conducir" />
-          <div class="card-body">
-            <a href="https://www.rosario.gob.ar/inicio/licencia-de-conducir"
-              class="btn btn-links btn-success" rel="nofollow">
-              Turnos Trámite
-            </a>
+      <!-- Dos carruseles apilados: mobile (≤675px), cards más legibles -->
+      <div class="carousel-wrap carousel-wrap--split">
+        <div class="carousel carousel--split" data-carousel>
+          <div class="carousel__track" data-carousel-track>
+            <div class="carousel__slide"><img src="./assets/images/slider1.webp" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider2.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider3.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
           </div>
+          <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Anterior">‹</button>
+          <button class="carousel__arrow carousel__arrow--next" type="button" data-carousel-next aria-label="Siguiente">›</button>
+          <div class="carousel__dots" data-carousel-dots></div>
         </div>
-      </div>
 
-      <div class="links-cards fourth">
-        <div class="card mt-3 mb-3">
-          <img loading="lazy" src="./assets/images/manual.webp"
-            width="192" height="192"
-            class="card-img-top mt-3"
-            alt="Material de estudio para aprender a manejar" />
-          <div class="card-body">
-            <a href="https://gestorweb.rosario.gob.ar/web/sites/default/files/manual_licencia_conducir.pdf"
-              class="btn btn-links btn-success" rel="nofollow">
-              Manual Licencia
-            </a>
+        <div class="carousel carousel--split" data-carousel>
+          <div class="carousel__track" data-carousel-track>
+            <div class="carousel__slide"><img src="./assets/images/slider4.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider5.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider6.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
           </div>
+          <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Anterior">‹</button>
+          <button class="carousel__arrow carousel__arrow--next" type="button" data-carousel-next aria-label="Siguiente">›</button>
+          <div class="carousel__dots" data-carousel-dots></div>
         </div>
-      </div>
 
-      <div class="links-cards first">
-        <div class="card mt-3 mb-3">
-          <img loading="lazy" src="./assets/images/simulador.webp"
-            width="192" height="192"
-            class="card-img-top mt-3"
-            alt="Simulador teórico para sacar carnet de conducir" />
-          <div class="card-body">
-            <a href="https://www.santafe.gob.ar/examenlicencia/examenETLC/listarCuestionarios.php"
-              class="btn btn-links btn-success" rel="nofollow">
-              Simulador Teórico
-            </a>
+        <div class="carousel carousel--split" data-carousel>
+          <div class="carousel__track" data-carousel-track>
+            <div class="carousel__slide"><img src="./assets/images/slider7.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider8.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider9.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
           </div>
+          <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Anterior">‹</button>
+          <button class="carousel__arrow carousel__arrow--next" type="button" data-carousel-next aria-label="Siguiente">›</button>
+          <div class="carousel__dots" data-carousel-dots></div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </div>
+    <!-- ===== PRECIOS ===== -->
+    <section class="section section--alt" id="our-prices">
+      <div class="section__head">
+        <h2 class="section__title">Nuestras promos <span aria-hidden="true">🔥</span></h2>
+      </div>
 
+      <div class="pricing">
+        <article class="price-card">
+          <div class="price-card__head">
+            <span class="price-card__icon" aria-hidden="true">🚙</span>
+            <h3 class="price-card__name">Promo Mini</h3>
+          </div>
+          <p class="price-card__detail"><strong>6 clases</strong></p>
+          <p class="price-card__price">$210.900 <span>desde el local</span></p>
+          <p class="price-card__price price-card__price--alt">$304.000 <span>tres horas a domicilio</span></p>
+        </article>
+
+        <article class="price-card">
+          <div class="price-card__head">
+            <span class="price-card__icon" aria-hidden="true">🏎️</span>
+            <h3 class="price-card__name">Rápida</h3>
+          </div>
+          <p class="price-card__detail"><strong>10 clases</strong></p>
+          <p class="price-card__price">$329.000 <span>desde el local</span></p>
+          <p class="price-card__price price-card__price--alt">$483.500 <span>cinco horas a domicilio</span></p>
+        </article>
+
+        <article class="price-card price-card--featured">
+          <span class="price-card__badge">Más elegida</span>
+          <div class="price-card__head">
+            <span class="price-card__icon" aria-hidden="true">🥇</span>
+            <h3 class="price-card__name">Manejo Yo</h3>
+          </div>
+          <p class="price-card__detail"><strong>10 clases + curso teórico y auto para rendir</strong></p>
+          <p class="price-card__price">$409.600 <span>desde el local</span></p>
+          <p class="price-card__price price-card__price--alt">$582.000 <span>a domicilio</span></p>
+        </article>
+
+        <article class="price-card">
+          <div class="price-card__head">
+            <span class="price-card__icon" aria-hidden="true">🏆</span>
+            <h3 class="price-card__name">Manejo Big</h3>
+          </div>
+          <p class="price-card__detail"><strong>15 clases + curso teórico y auto para rendir</strong></p>
+          <p class="price-card__price">$531.300 <span>desde el local</span></p>
+          <p class="price-card__price price-card__price--alt">$734.000 <span>a domicilio</span></p>
+        </article>
+
+        <article class="price-card">
+          <div class="price-card__head">
+            <span class="price-card__icon" aria-hidden="true">👑</span>
+            <h3 class="price-card__name">Super</h3>
+          </div>
+          <p class="price-card__detail"><strong>20 clases + curso teórico y auto para rendir</strong></p>
+          <p class="price-card__price">$636.000 <span>desde el local</span></p>
+          <p class="price-card__price price-card__price--alt">$931.700 <span>a domicilio</span></p>
+        </article>
+
+        <article class="price-card">
+          <div class="price-card__head">
+            <span class="price-card__icon" aria-hidden="true">💎</span>
+            <h3 class="price-card__name">Full</h3>
+          </div>
+          <p class="price-card__detail"><strong>30 clases + curso teórico y auto para rendir</strong></p>
+          <p class="price-card__price">$939.000 <span>desde el local</span></p>
+          <p class="price-card__price price-card__price--alt">$1.204.000 <span>a domicilio</span></p>
+        </article>
+      </div>
+
+      <p class="disclaimer">* Los precios están sujetos a modificación sin previo aviso</p>
+    </section>
+
+    <!-- ===== ENLACES ===== -->
+    <section class="section" id="links">
+      <div class="section__head">
+        <h2 class="section__title">Enlaces útiles <span aria-hidden="true">🤓</span></h2>
+      </div>
+
+      <div class="links-grid">
+        <article class="link-card">
+          <img src="./assets/images/psicofisico.webp" width="96" height="96" alt="" loading="lazy" />
+          <h3>Turnos Trámite</h3>
+          <p>Pedí tu turno para el psicofísico y la licencia en la Municipalidad de Rosario.</p>
+          <a class="btn btn--primary btn--block" href="https://www.rosario.gob.ar/inicio/licencia-de-conducir"
+            target="_blank" rel="nofollow noopener">Sacar turno</a>
+        </article>
+
+        <article class="link-card">
+          <img src="./assets/images/manual.webp" width="96" height="96" alt="" loading="lazy" />
+          <h3>Manual Licencia</h3>
+          <p>El material oficial para estudiar antes del examen teórico.</p>
+          <a class="btn btn--primary btn--block"
+            href="https://gestorweb.rosario.gob.ar/web/sites/default/files/manual_licencia_conducir.pdf"
+            target="_blank" rel="nofollow noopener">Descargar manual</a>
+        </article>
+
+        <article class="link-card">
+          <img src="./assets/images/simulador.webp" width="96" height="96" alt="" loading="lazy" />
+          <h3>Simulador Teórico</h3>
+          <p>Practicá con el simulador oficial de la Provincia de Santa Fe.</p>
+          <a class="btn btn--primary btn--block"
+            href="https://www.santafe.gob.ar/examenlicencia/examenETLC/listarCuestionarios.php"
+            target="_blank" rel="nofollow noopener">Practicar examen</a>
+        </article>
+      </div>
+    </section>
+
+  </main>
 
   <!-- ===== FOOTER ===== -->
-  <footer>
-    <div class="container last-container">
-      <div class="row nosotros d-flex justify-content-center" id="us">
+  <footer class="footer" id="us">
+    <div class="footer__inner">
+      <h2 class="footer__title">Seguinos en nuestras redes <span aria-hidden="true">💗</span></h2>
 
-        <div class="col-12 redes-container d-flex justify-content-center">
-          <h3 class="text-center d-flex justify-content-center last-title">
-            Seguinos en nuestras redes 💗
-          </h3>
+      <div class="footer__grid">
+        <div class="footer__social">
+          <a class="social-row" href="https://www.facebook.com/ondaverdeescueladeconductores/" target="_blank" rel="noopener">
+            <img src="./assets/images/facebook1.webp" width="40" height="40" alt="" loading="lazy" />
+            <span>ondaverdeescueladeconductores</span>
+          </a>
+          <a class="social-row" href="https://www.instagram.com/ondaverdeescuela/" target="_blank" rel="noopener">
+            <img src="./assets/images/instagram.webp" width="40" height="40" alt="" loading="lazy" />
+            <span>ondaverdeescuela</span>
+          </a>
+          <a class="social-row" href="https://api.whatsapp.com/send?phone=5493413642175" target="_blank" rel="noopener">
+            <img src="./assets/images/whats1.webp" width="40" height="40" alt="" loading="lazy" />
+            <span>341 364-2175</span>
+          </a>
         </div>
 
-        <div class="col-12">
-          <div class="row foot d-flex justify-content-center">
-            
-            <div class="col-12 col-md-6 redes">
-              <div class="sociales">
-                <a href="https://www.facebook.com/ondaverdeescueladeconductores/" class="deco-none">
-                  <img loading="lazy" class="facebook deco-none" src="./assets/images/facebook1.webp"
-                    width="64" height="64" alt="Facebook Onda Verde" />
-                  <p class="color-white redes-p">ondaverdeescueladeconductores</p>
-                </a>
-              </div>
-              <div class="sociales insta-div">
-                <a href="https://www.instagram.com/ondaverdeescuela/" class="deco-none">
-                  <img loading="lazy" class="seguinos-img deco-none" src="./assets/images/instagram.webp"
-                    width="64" height="64" alt="Instagram Onda Verde" />
-                  <p class="color-white redes-p">ondaverdeescuela</p>
-                </a>
-              </div>
-              <div class="sociales whats-div">
-                <a href="https://api.whatsapp.com/send?phone=5493413642175" class="deco-none">
-                  <img loading="lazy" class="seguinos-img whats-img deco-none" src="./assets/images/whats1.webp"
-                    width="64" height="64" alt="WhatsApp Onda Verde" />
-                  <p class="color-white redes-p">341 3642175</p>
-                </a>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-6 map-div d-flex">
-              <div class="sociales">
-                <a href="https://maps.google.com" class="deco-none" target="_blank">
-                  <p class="ubication-img deco-none">📌</p>
-                </a>
-                <p class="color-white">
-                  Estamos en <strong>Bv. Rondeau 3584</strong> pero damos clases en
-                  <strong>todo Rosario y alrededores</strong>
-                </p>
-              </div>
-              <div class="map-wrapper">
-                <iframe
-                  class="map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.539864273273!2d-60.6953499!3d-32.88389!2m3!1f0!2f0!3f0!3m2!1i1020!2i768!4f13.1!3m3!1m2!1s0x95b652614b0b8c6f%3A0x6bde3523fbb54bb7!2sBv.%20Rondeau%203584%2C%20S2005%20Rosario%2C%20Santa%20Fe!5e0!3m2!1ses!2sar!4v1710000000000!5m2!1ses!2sar"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  title="Ubicación Onda Verde">
-                </iframe>
-              </div>
-            </div>
-
+        <div class="footer__map">
+          <p class="footer__address">
+            <span aria-hidden="true">📌</span>
+            Estamos en <strong>Bv. Rondeau 3584</strong>, pero damos clases en
+            <strong>todo Rosario y alrededores</strong>.
+          </p>
+          <div class="map-frame">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.539864273273!2d-60.6953499!3d-32.88389!2m3!1f0!2f0!3f0!3m2!1i1020!2i768!4f13.1!3m3!1m2!1s0x95b652614b0b8c6f%3A0x6bde3523fbb54bb7!2sBv.%20Rondeau%203584%2C%20S2005%20Rosario%2C%20Santa%20Fe!5e0!3m2!1ses!2sar!4v1710000000000!5m2!1ses!2sar"
+              allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación Onda Verde">
+            </iframe>
           </div>
         </div>
-
-        <div class="col-12 d-flex justify-content-center">
-          <div class="sociales horarios-div">
-            <p class="horario-p">🕘</p>
-            <p class="color-white">
-              <strong>Horario de atención:</strong> De lunes a jueves de 9:30 a 12hs y de 16:30 a 19hs.
-              Viernes cerramos 18hs
-            </p>
-            <p class="color-white"><strong>Clases: De lunes a viernes de 8 a 20hs</strong></p>
-          </div>
-        </div>
-
-        <div class="col-12 text-center pt-4 pb-2">
-          <p class="m-0 text-muted" style="color: #6c757d !important;">Copyright © 2022 Escuela de Conductores Onda Verde</p>
-        </div>
-
       </div>
-    </div>
 
-    <a href="https://api.whatsapp.com/send?phone=5493413642175"
-      id="whatsapp" class="whatsapp title-hidden"
-      aria-label="Contactar por WhatsApp"></a>
+      <div class="footer__hours">
+        <p><span aria-hidden="true">🕘</span> <strong>Horario de atención:</strong> lunes a jueves de 9:30 a 12hs y de 16:30 a 19hs. Viernes cerramos 18hs.</p>
+        <p><strong>Clases:</strong> lunes a viernes de 8 a 20hs.</p>
+      </div>
+
+      <p class="footer__copy">© 2022 Escuela de Conductores Onda Verde</p>
+    </div>
   </footer>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-    crossorigin="anonymous" defer></script>
-  <script src="app.js" defer></script>
+  <a href="https://api.whatsapp.com/send?phone=5493413642175" id="whatsapp" class="whatsapp"
+    aria-label="Contactar por WhatsApp">
+    <img src="./assets/images/what2.webp" alt="" width="28" height="28" />
+  </a>
 
+  <script src="./assets/js/app.js" defer></script>
 </body>
 </html>
