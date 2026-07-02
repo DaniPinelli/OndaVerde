@@ -186,17 +186,20 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .nav__toggle {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 5px;
-  width: 40px;
-  height: 40px;
-  background: none;
-  border: none;
+  width: 8.25rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   cursor: pointer;
   padding: 0;
 }
 .nav__toggle-bar {
+  width: 20px;
   height: 2px;
   background: var(--text);
   border-radius: 2px;
@@ -267,21 +270,25 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nav__title--full { font-size: 2.1rem; } /* el doble del tamaño base */
 
   /* Menú tipo panel anclado a la derecha, cerca del pulgar y del botón
-     hamburguesa. Se despliega hacia arriba sin ocupar toda la pantalla. */
+     hamburguesa. Se despliega hacia arriba sin ocupar toda la pantalla.
+     El ancho se ajusta al contenido (el botón "Escribinos" termina siendo
+     el elemento más ancho), en vez de un ancho fijo. */
   .nav__menu {
     position: fixed;
     left: auto;
     right: 0.75rem;
     top: auto;
     bottom: calc(var(--header-h) + 0.75rem);
-    width: min(280px, 78vw);
+    width: fit-content;
+    min-width: max-content;
+    max-width: 78vw;
     max-height: calc(100vh - var(--header-h) - 1.5rem);
     background: rgba(8, 9, 11, 0.97);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6);
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     padding: 1.5rem 1.25rem;
     gap: 1.25rem;
     overflow-y: auto;
@@ -298,14 +305,18 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
   .nav__list {
     flex-direction: column;
+    align-items: center;
     gap: 0;
+    width: 100%;
   }
   .nav__link {
-    padding: 0.9rem 0;
+    display: inline-block;
+    padding: 0.9rem 0.25rem;
     border-bottom: 1px solid var(--border);
     font-size: 1.1rem;
+    text-align: center;
   }
-  .nav__cta { align-self: flex-start; }
+  .nav__cta { align-self: center; white-space: nowrap; }
 }
 
 /* Pantallas angostas (Fold5 pantalla externa ~344px, Poco C75 ~360-393px,
@@ -375,7 +386,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   margin-top: 1.25rem;
   max-width: 52ch;
   color: var(--green);
-  font-size: 1.05rem;
+  font-size: 1.37rem;
 }
 
 .hero__actions {
@@ -538,19 +549,33 @@ ul { margin: 0; padding: 0; list-style: none; }
 .carousel__dots {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   margin-top: 1.25rem;
 }
 .carousel__dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel__dot::after {
+  content: '';
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--border);
-  border: none;
-  cursor: pointer;
-  padding: 0;
+  transition: background-color 0.15s ease, transform 0.15s ease;
 }
-.carousel__dot.is-active { background: var(--green); }
+.carousel__dot.is-active::after {
+  background: var(--green);
+  transform: scale(1.25);
+}
 
 /* =====================================================
    PRICING
@@ -604,14 +629,14 @@ ul { margin: 0; padding: 0; list-style: none; }
   gap: 0.5rem;
 }
 .price-card__icon { font-size: 1.26rem; line-height: 1; } /* 30% más chico que antes */
-.price-card__name { font-size: 1.3rem; }
-.price-card__detail { color: var(--text-muted); font-size: 1.08rem; }
+.price-card__name { font-size: 1.7rem; }
+.price-card__detail { color: var(--text-muted); font-size: 1.4rem; }
 .price-card__detail strong { color: var(--text); font-weight: 600; }
 
 .price-card__price {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.95rem;
   color: var(--green);
   margin-top: 0.35rem;
 }
@@ -619,12 +644,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: block;
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 0.8rem;
+  font-size: 1.05rem;
   color: var(--text-muted);
   text-transform: none;
 }
 .price-card__price--alt {
-  font-size: 1.15rem;
+  font-size: 1.5rem;
   color: var(--amber);
 }
 
@@ -788,7 +813,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .footer__copy {
   margin-top: 2rem;
   text-align: center;
-  color: #5b6472;
+  color: var(--text-muted);
   font-size: 0.8rem;
 }
 

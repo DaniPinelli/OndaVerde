@@ -72,15 +72,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const dots = Array.from(dotsWrap.children);
 
+    // Medimos una sola vez y volvemos a medir solo cuando cambia el
+    // tamaño (ResizeObserver), en vez de leer clientWidth/offsetLeft
+    // en cada scroll o click, que es lo que generaba el reprocesamiento
+    // forzado (forced reflow) que reportaba PageSpeed.
+    let trackWidth = track.clientWidth;
+    let slideOffsets = slides.map(s => s.offsetLeft);
+
+    const measure = () => {
+      trackWidth = track.clientWidth;
+      slideOffsets = slides.map(s => s.offsetLeft);
+    };
+
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(measure).observe(track);
+    } else {
+      window.addEventListener('resize', measure, { passive: true });
+    }
+
     const currentIndex = () => {
-      if (!track.clientWidth) return 0;
-      return Math.round(track.scrollLeft / track.clientWidth);
+      if (!trackWidth) return 0;
+      return Math.round(track.scrollLeft / trackWidth);
     };
 
     const goTo = (index) => {
-      if (!track.clientWidth) return;
+      if (!trackWidth) return;
       const clamped = (index + slides.length) % slides.length;
-      track.scrollTo({ left: slides[clamped].offsetLeft, behavior: 'smooth' });
+      track.scrollTo({ left: slideOffsets[clamped], behavior: 'smooth' });
     };
 
     const updateActiveDot = () => {
