@@ -10,7 +10,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" />
+  </noscript>
 
   <link rel="stylesheet" href="./assets/css/style.css" />
 
@@ -105,7 +110,7 @@
       <div class="carousel-wrap carousel-wrap--single">
         <div class="carousel" data-carousel>
           <div class="carousel__track" data-carousel-track>
-            <div class="carousel__slide"><img src="./assets/images/slider1.webp" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider1.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
             <div class="carousel__slide"><img src="./assets/images/slider2.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
             <div class="carousel__slide"><img src="./assets/images/slider3.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
             <div class="carousel__slide"><img src="./assets/images/slider4.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
@@ -125,7 +130,7 @@
       <div class="carousel-wrap carousel-wrap--split">
         <div class="carousel carousel--split" data-carousel>
           <div class="carousel__track" data-carousel-track>
-            <div class="carousel__slide"><img src="./assets/images/slider1.webp" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
+            <div class="carousel__slide"><img src="./assets/images/slider1.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
             <div class="carousel__slide"><img src="./assets/images/slider2.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
             <div class="carousel__slide"><img src="./assets/images/slider3.webp" width="720" height="697" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" /></div>
           </div>
@@ -294,12 +299,17 @@
             Estamos en <strong>Bv. Rondeau 3584</strong>, pero damos clases en
             <strong>todo Rosario y alrededores</strong>.
           </p>
-          <div class="map-frame">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.539864273273!2d-60.6953499!3d-32.88389!2m3!1f0!2f0!3f0!3m2!1i1020!2i768!4f13.1!3m3!1m2!1s0x95b652614b0b8c6f%3A0x6bde3523fbb54bb7!2sBv.%20Rondeau%203584%2C%20S2005%20Rosario%2C%20Santa%20Fe!5e0!3m2!1ses!2sar!4v1710000000000!5m2!1ses!2sar"
-              allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-              title="Ubicación Onda Verde">
-            </iframe>
+          <div class="map-frame" id="mapFrame" data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.539864273273!2d-60.6953499!3d-32.88389!2m3!1f0!2f0!3f0!3m2!1i1020!2i768!4f13.1!3m3!1m2!1s0x95b652614b0b8c6f%3A0x6bde3523fbb54bb7!2sBv.%20Rondeau%203584%2C%20S2005%20Rosario%2C%20Santa%20Fe!5e0!3m2!1ses!2sar!4v1710000000000!5m2!1ses!2sar">
+            <button type="button" class="map-frame__cta" id="mapLoadBtn">
+              <span aria-hidden="true">📍</span> Ver mapa interactivo
+            </button>
+            <noscript>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.539864273273!2d-60.6953499!3d-32.88389!2m3!1f0!2f0!3f0!3m2!1i1020!2i768!4f13.1!3m3!1m2!1s0x95b652614b0b8c6f%3A0x6bde3523fbb54bb7!2sBv.%20Rondeau%203584%2C%20S2005%20Rosario%2C%20Santa%20Fe!5e0!3m2!1ses!2sar!4v1710000000000!5m2!1ses!2sar"
+                allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                title="Ubicación Onda Verde">
+              </iframe>
+            </noscript>
           </div>
         </div>
       </div>
@@ -314,9 +324,7 @@
   </footer>
 
   <a href="https://api.whatsapp.com/send?phone=5493413642175" id="whatsapp" class="whatsapp"
-    aria-label="Contactar por WhatsApp">
-    <img src="./assets/images/what2.webp" alt="" width="28" height="28" />
-  </a>
+    aria-label="Contactar por WhatsApp"></a>
 
   <script src="./assets/js/app.js" defer></script>
 </body>

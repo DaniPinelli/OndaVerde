@@ -112,4 +112,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('[data-carousel]').forEach(initCarousel);
 
+  /* ── Mapa: se carga recién al hacer click, ahorra el JS de Maps ── */
+  const mapBtn = document.getElementById('mapLoadBtn');
+  if (mapBtn) {
+    mapBtn.addEventListener('click', () => {
+      const wrap = document.getElementById('mapFrame');
+      const src = wrap.getAttribute('data-map-src');
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.title = 'Ubicación Onda Verde';
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.allowFullscreen = true;
+      wrap.replaceChildren(iframe);
+    }, { once: true });
+  }
+
 });
