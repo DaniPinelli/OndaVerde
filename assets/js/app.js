@@ -58,22 +58,33 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('whatsapp').classList.add('is-visible');
   }, 4000);
 
-  /* ── Carrusel de opiniones (soporta varias instancias) ── */
-  const initCarousel = (root) => {
+  /* ── Carrusel de opiniones (soporta varias instancias) ──
+     Se separan por completo las lecturas de geometría (medir cada
+     carrusel) de las escrituras en el DOM (crear los dots). Si se
+     alternan lectura → escritura → lectura → escritura entre varios
+     carruseles, cada lectura fuerza un recálculo de layout inmediato
+     (forced reflow). Midiendo TODOS primero y escribiendo TODOS
+     después, el navegador hace un solo layout en vez de uno por
+     carrusel. */
+  const prepareCarousel = (root) => {
     const track = root.querySelector('[data-carousel-track]');
     const dotsWrap = root.querySelector('[data-carousel-dots]');
     const prevBtn = root.querySelector('[data-carousel-prev]');
     const nextBtn = root.querySelector('[data-carousel-next]');
-    if (!track) return;
+    if (!track) return null;
 
     const slides = Array.from(track.children);
+    return {
+      root, track, dotsWrap, prevBtn, nextBtn, slides,
+      trackWidth: track.clientWidth,           // lectura
+      slideOffsets: slides.map(s => s.offsetLeft), // lectura
+    };
+  };
 
-    // Medimos primero (lectura), y recién después escribimos los dots en
-    // el DOM. Si se mide después de escribir, el navegador se ve obligado
-    // a recalcular el layout de inmediato (forced reflow) — invertir el
-    // orden lo evita.
-    let trackWidth = track.clientWidth;
-    let slideOffsets = slides.map(s => s.offsetLeft);
+  const wireCarousel = (state) => {
+    const { root, track, dotsWrap, prevBtn, nextBtn, slides } = state;
+    let trackWidth = state.trackWidth;
+    let slideOffsets = state.slideOffsets;
 
     const measure = () => {
       trackWidth = track.clientWidth;
@@ -95,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dot.addEventListener('click', () => goTo(i));
       dotsFragment.appendChild(dot);
     });
-    dotsWrap.appendChild(dotsFragment);
+    dotsWrap.appendChild(dotsFragment); // escritura
     const dots = Array.from(dotsWrap.children);
 
     const currentIndex = () => {
@@ -136,7 +147,10 @@ document.addEventListener('DOMContentLoaded', () => {
     root.addEventListener('mouseleave', resume);
   };
 
-  document.querySelectorAll('[data-carousel]').forEach(initCarousel);
+  const carouselStates = Array.from(document.querySelectorAll('[data-carousel]'))
+    .map(prepareCarousel)  // fase 1: solo lecturas
+    .filter(Boolean);
+  carouselStates.forEach(wireCarousel); // fase 2: solo escrituras
 
   /* ── Mapa: se carga recién al hacer click, ahorra el JS de Maps ── */
   const mapBtn = document.getElementById('mapLoadBtn');

@@ -1,0 +1,37 @@
+# =====================================================
+# Onda Verde — configuración opcional de servidor (Apache)
+# Solo funciona si tu hosting usa Apache con estos módulos
+# habilitados (la gran mayoría del hosting compartido en
+# Argentina los tiene). Si tu hosting es Nginx u otro, este
+# archivo no hace nada y hay que configurar el equivalente
+# desde el panel del proveedor.
+# =====================================================
+
+# ── Compresión de texto (gzip/deflate) ──────────────────
+# Ataca el "Latencia de solicitud de documentos" y la parte de
+# "habilita la compresión de texto" que marca PageSpeed.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ── Cache del navegador para archivos estáticos ─────────
+# No aparece en tus capturas, pero es la mejora natural
+# siguiente una vez resuelta la compresión.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+</IfModule>
+
+# ── Fuerza HTTPS (evita redirecciones extra si tu hosting
+#    ya no lo hace por su cuenta) ────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
