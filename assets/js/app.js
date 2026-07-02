@@ -22,8 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Header con fondo al scrollear ───────────────────── */
   const header = document.getElementById('site-header');
+  let scrollTicking = false;
   const onScroll = () => {
-    header.classList.toggle('is-scrolled', window.scrollY > 12);
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(() => {
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+      scrollTicking = false;
+    });
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();

@@ -189,17 +189,18 @@ ul { margin: 0; padding: 0; list-style: none; }
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 5px;
-  width: 8.25rem;
-  height: 2.75rem;
+  gap: 4px;
+  width: 3.25rem;
+  height: 2.5rem;
   border-radius: 999px;
   background: var(--surface-2);
   border: 1px solid var(--border);
   cursor: pointer;
   padding: 0;
+  flex-shrink: 0;
 }
 .nav__toggle-bar {
-  width: 20px;
+  width: 16px;
   height: 2px;
   background: var(--text);
   border-radius: 2px;
