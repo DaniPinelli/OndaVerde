@@ -68,20 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const slides = Array.from(track.children);
 
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'carousel__dot';
-      dot.type = 'button';
-      dot.setAttribute('aria-label', `Ir a la imagen ${i + 1}`);
-      dot.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(dot);
-    });
-    const dots = Array.from(dotsWrap.children);
-
-    // Medimos una sola vez y volvemos a medir solo cuando cambia el
-    // tamaño (ResizeObserver), en vez de leer clientWidth/offsetLeft
-    // en cada scroll o click, que es lo que generaba el reprocesamiento
-    // forzado (forced reflow) que reportaba PageSpeed.
+    // Medimos primero (lectura), y recién después escribimos los dots en
+    // el DOM. Si se mide después de escribir, el navegador se ve obligado
+    // a recalcular el layout de inmediato (forced reflow) — invertir el
+    // orden lo evita.
     let trackWidth = track.clientWidth;
     let slideOffsets = slides.map(s => s.offsetLeft);
 
@@ -95,6 +85,18 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       window.addEventListener('resize', measure, { passive: true });
     }
+
+    const dotsFragment = document.createDocumentFragment();
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel__dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Ir a la imagen ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsFragment.appendChild(dot);
+    });
+    dotsWrap.appendChild(dotsFragment);
+    const dots = Array.from(dotsWrap.children);
 
     const currentIndex = () => {
       if (!trackWidth) return 0;
