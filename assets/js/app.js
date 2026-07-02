@@ -20,6 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', closeMenu);
   });
 
+  /* ── Header con fondo al scrollear ───────────────────── 
+  const header = document.getElementById('site-header');
+  let scrollTicking = false;
+  const onScroll = () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(() => {
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+      scrollTicking = false;
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); */
+
   /* ── Header con fondo al scrollear ───────────────────── */
   const header = document.getElementById('site-header');
   let scrollTicking = false;
@@ -32,7 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  
+  // SOLUCIÓN: Envolver el onScroll inicial en un requestAnimationFrame 
+  // para que no ensucie las lecturas limpias que hacen los carruseles abajo.
+  window.requestAnimationFrame(onScroll);
 
   /* ── Scrollspy: resalta el link activo del menú ──────── */
   const navLinks = document.querySelectorAll('.nav__link');
