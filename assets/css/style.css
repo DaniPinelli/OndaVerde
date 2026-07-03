@@ -13,6 +13,24 @@
   --amber: #ffb238;
   --wsp: #25d366;
 
+  /* Fondos semitransparentes (header, menú mobile, flechas del carrusel).
+     Fijos por tema para que el blur/overlay siga viéndose bien tanto
+     sobre fondos claros como oscuros. */
+  --overlay-bg: rgba(11, 13, 16, 0.7);
+  --overlay-bg-strong: rgba(11, 13, 16, 0.92);
+  --overlay-bg-mobile: rgba(11, 13, 16, 0.96);
+  --overlay-menu-bg: rgba(8, 9, 11, 0.97);
+  --overlay-menu-shadow: rgba(0, 0, 0, 0.6);
+  --footer-bg: #07090b;
+
+  /* El hero tiene una foto con scrim oscuro para que el texto sea legible;
+     se mantiene siempre oscuro sin importar el tema activo. */
+  --hero-ink: #0b0d10;
+  --hero-text: #f5f7fa;
+  --hero-text-muted: #cfd6de;
+
+  --card-shadow: rgba(0, 0, 0, 0.45);
+
   --font-display: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
 
@@ -25,6 +43,38 @@
 
   --header-h: 72px;
 }
+
+/* =====================================================
+   MODO CLARO
+   ===================================================== */
+[data-theme="light"] {
+  --ink: #f5f7fa;
+  --surface: #ffffff;
+  --surface-2: #eef1f5;
+  --border: #dbe1e8;
+  --text: #12161c;
+  --text-muted: #5b6472;
+  --green: #1f9c47;
+  --green-deep: #16702f;
+  --amber: #b9720a;
+
+  --overlay-bg: rgba(255, 255, 255, 0.78);
+  --overlay-bg-strong: rgba(255, 255, 255, 0.94);
+  --overlay-bg-mobile: rgba(255, 255, 255, 0.96);
+  --overlay-menu-bg: rgba(255, 255, 255, 0.98);
+  --overlay-menu-shadow: rgba(15, 20, 25, 0.18);
+  --footer-bg: #eef1f5;
+  --card-shadow: rgba(15, 20, 25, 0.14);
+}
+
+/* En claro, el botón primario necesita texto oscuro legible sobre el
+   verde (más oscuro que en el modo oscuro) */
+[data-theme="light"] .btn--primary,
+[data-theme="light"] .price-card__badge,
+[data-theme="light"] .skip-link {
+  color: #ffffff;
+}
+[data-theme="light"] .btn--primary:hover { background: #248f45; }
 
 /* =====================================================
    RESET / BASE
@@ -124,6 +174,18 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .btn--ghost:hover { border-color: var(--green); color: var(--green); }
 
+/* El hero mantiene siempre su scrim oscuro (foto de fondo), así que el
+   botón "Ver promos" necesita texto y borde claros fijos, sin importar
+   el tema activo, para no perderse en modo claro. */
+.hero__actions .btn--ghost {
+  color: var(--hero-text);
+  border-color: rgba(245, 247, 250, 0.4);
+}
+.hero__actions .btn--ghost:hover {
+  color: var(--green);
+  border-color: var(--green);
+}
+
 .btn--sm { padding: 0.6rem 1.1rem; font-size: 0.85rem; }
 .btn--block { width: 100%; }
 
@@ -137,7 +199,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   height: var(--header-h);
   display: flex;
   align-items: center;
-  background: rgba(11, 13, 16, 0.7);
+  background: var(--overlay-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
@@ -145,7 +207,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .site-header.is-scrolled {
   border-bottom-color: var(--border);
-  background: rgba(11, 13, 16, 0.92);
+  background: var(--overlay-bg-strong);
 }
 
 .nav {
@@ -155,9 +217,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   margin: 0 auto;
   padding: 0 1.25rem;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
-  column-gap: 1rem;
+  column-gap: 0.6rem;
 }
 
 /* Logo a la izquierda, título ocupando el resto y centrado: mismo esquema
@@ -210,6 +272,32 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) { opacity: 0; }
 .nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* ── Toggle de modo claro/oscuro ─────────────────────── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.theme-toggle:hover { border-color: var(--green); transform: translateY(-1px); }
+
+.theme-toggle__icon { display: none; }
+/* Muestra el sol (invita a pasar a claro) cuando el tema activo es oscuro,
+   y la luna cuando el tema activo es claro */
+.theme-toggle__icon--sun { display: block; }
+[data-theme="light"] .theme-toggle__icon--sun { display: none; }
+[data-theme="light"] .theme-toggle__icon--moon { display: block; }
+
 .nav__menu {
   display: flex;
   align-items: center;
@@ -247,7 +335,7 @@ ul { margin: 0; padding: 0; list-style: none; }
     right: 0;
     border-bottom: none;
     border-top: 1px solid var(--border);
-    background: rgba(11, 13, 16, 0.96);
+    background: var(--overlay-bg-mobile);
   }
   .site-header.is-scrolled {
     border-top-color: var(--border);
@@ -284,10 +372,10 @@ ul { margin: 0; padding: 0; list-style: none; }
     min-width: max-content;
     max-width: 78vw;
     max-height: calc(100vh - var(--header-h) - 1.5rem);
-    background: rgba(8, 9, 11, 0.97);
+    background: var(--overlay-menu-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 16px 44px var(--overlay-menu-shadow);
     flex-direction: column;
     align-items: center;
     padding: 1.5rem 1.25rem;
@@ -320,9 +408,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nav__cta { align-self: center; white-space: nowrap; }
 }
 
-/* Pantallas angostas (Fold5 pantalla externa ~344px, Poco C75 ~360-393px,
-   etc.): el título doble se rompe, así que se achica en dos escalones */
-@media (max-width: 400px) {
+/* Pantallas angostas (Galaxy A51/A71 ~412px, Fold5 pantalla externa ~344px,
+   Poco C75 ~360-393px, etc.): el título doble se rompe, así que se achica
+   en dos escalones */
+@media (max-width: 430px) {
   .nav { padding-left: 0.5rem; padding-right: 0.7rem; }
   .nav__logo { height: 42px; }
   .nav__title--full { font-size: 1.55rem; letter-spacing: 0.02em; }
@@ -364,7 +453,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(11,13,16,0.35) 0%, rgba(11,13,16,0.55) 55%, var(--ink) 96%),
+    linear-gradient(180deg, rgba(11,13,16,0.35) 0%, rgba(11,13,16,0.55) 55%, var(--hero-ink) 96%),
     linear-gradient(90deg, rgba(11,13,16,0.85) 0%, rgba(11,13,16,0.15) 55%);
 }
 
@@ -378,16 +467,16 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .hero__title {
-  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-size: clamp(1.7rem, 4.25vw, 2.9rem);
   max-width: 18ch;
-  color: var(--text);
+  color: var(--hero-text);
 }
 
 .hero__text {
   margin-top: 1.25rem;
   max-width: 52ch;
-  color: var(--green);
-  font-size: 1.37rem;
+  color: #6bea8c;
+  font-size: 1.16rem;
 }
 
 .hero__actions {
@@ -529,7 +618,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   height: 44px;
   border-radius: 50%;
   border: 1px solid var(--border);
-  background: rgba(11,13,16,0.7);
+  background: var(--overlay-bg);
   color: var(--text);
   font-size: 1.5rem;
   line-height: 1;
@@ -589,7 +678,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .price-card {
   position: relative;
-  background: var(--surface-2);
+  background: linear-gradient(165deg, rgba(74,222,107,0.12), var(--surface-2) 55%);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 1.75rem 1.5rem;
@@ -604,7 +693,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .price-card--featured {
   border-color: var(--green);
-  background: linear-gradient(165deg, rgba(74,222,107,0.12), var(--surface-2) 55%);
 }
 
 .price-card__badge {
@@ -700,10 +788,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
+  box-shadow: 0 10px 28px var(--card-shadow);
 }
 .link-card img {
-  width: 83px;
-  height: 83px;
+  width: 95px;
+  height: 95px;
   object-fit: contain;
   margin-bottom: 0.25rem;
 }
@@ -722,7 +811,7 @@ ul { margin: 0; padding: 0; list-style: none; }
    FOOTER
    ===================================================== */
 .footer {
-  background: #07090b;
+  background: var(--footer-bg);
   border-top: 1px solid var(--border);
   padding: var(--section-padding) 1.25rem 2rem;
 }

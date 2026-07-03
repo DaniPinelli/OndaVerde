@@ -1,5 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ── Modo claro / oscuro ──────────────────────────────
+     El atributo data-theme ya se setea en un script inline en el
+     <head> (para evitar el parpadeo del tema equivocado al cargar).
+     Acá solo cableamos el botón y persistimos la elección. */
+  const themeToggle = document.getElementById('themeToggle');
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  const THEME_COLORS = { dark: '#0b0d10', light: '#f5f7fa' };
+
+  const applyTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (themeColorMeta) themeColorMeta.setAttribute('content', THEME_COLORS[theme]);
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-label', theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro');
+    }
+  };
+
+  // Sincroniza el color de la barra del navegador con el tema ya aplicado
+  applyTheme(document.documentElement.getAttribute('data-theme') || 'dark');
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      const next = current === 'light' ? 'dark' : 'light';
+      applyTheme(next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  }
+
   /* ── Menú mobile ─────────────────────────────────────── */
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
