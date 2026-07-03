@@ -192,10 +192,17 @@ document.addEventListener('DOMContentLoaded', () => {
     root.addEventListener('mouseleave', resume);
   };
 
-  const carouselStates = Array.from(document.querySelectorAll('[data-carousel]'))
-    .map(prepareCarousel)  // fase 1: solo lecturas
-    .filter(Boolean);
-  carouselStates.forEach(wireCarousel); // fase 2: solo escrituras
+  const carouselRoots = Array.from(document.querySelectorAll('[data-carousel]'));
+  // Se difiere al próximo frame: para entonces el navegador ya hizo el
+  // layout inicial de la página, así que medir clientWidth/offsetLeft acá
+  // no fuerza un reprocesamiento síncrono extra (a diferencia de leerlo en
+  // el mismo tick que los cambios de DOM de más arriba: tema, menú, etc.).
+  window.requestAnimationFrame(() => {
+    const carouselStates = carouselRoots
+      .map(prepareCarousel)  // fase 1: solo lecturas
+      .filter(Boolean);
+    carouselStates.forEach(wireCarousel); // fase 2: solo escrituras
+  });
 
   /* ── Mapa: se carga recién al hacer click, ahorra el JS de Maps ── */
   const mapBtn = document.getElementById('mapLoadBtn');

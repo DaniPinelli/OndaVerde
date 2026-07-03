@@ -232,7 +232,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   text-decoration: none;
 }
 .nav__logo { height: 34px; width: auto; border-radius: 8px; flex-shrink: 0; }
-.nav__title { flex: 1; text-align: center; }
+.nav__title { flex: 1; min-width: 0; text-align: center; }
 .nav__title--full {
   font-family: var(--font-display);
   font-weight: 700;
@@ -240,10 +240,27 @@ ul { margin: 0; padding: 0; list-style: none; }
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--green);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 @media (min-width: 861px) {
   .nav__logo { height: 47.6px; }
-  .nav__title--full { font-size: 2.1rem; }
+  /* Fluido en vez de saltar directo a 2.1rem: en notebooks/tablets
+     landscape (Surface Pro 7 ~912-1368px, etc.) el título grande +
+     logo + menú + botones no entraban en una sola fila y el texto
+     terminaba rompiéndose. Recién en pantallas bien anchas llega al
+     tamaño máximo. */
+  .nav__title--full { font-size: clamp(1.35rem, 0.9rem + 1.1vw, 2.1rem); }
+}
+
+/* Rango intermedio (tablets landscape / notebooks chicas): además se
+   angosta un poco el menú para liberar espacio */
+@media (min-width: 861px) and (max-width: 1180px) {
+  .nav__menu { gap: 1.1rem; }
+  .nav__list { gap: 1.1rem; }
+  .nav__link { font-size: 0.85rem; }
 }
 
 .nav__toggle {
@@ -569,7 +586,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   gap: 2rem;
 }
 
-@media (max-width: 675px) {
+@media (max-width: 860px) {
   .carousel-wrap--single { display: none; }
   .carousel-wrap--split { display: flex; }
 }
@@ -776,6 +793,30 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
+}
+
+/* A este ancho 3 cards ya no entran en una fila (auto-fit las deja en
+   2+1, se ve descuadrado), así que se pasa directo a una sola columna,
+   igual que en mobile */
+@media (max-width: 860px) {
+  .links-grid { grid-template-columns: 1fr; }
+}
+
+/* Entre el breakpoint de columna única (860px) y el de mobile (640px)
+   la card ocupaba todo el ancho y se veía sobredimensionada, así que
+   en ese tramo se achica a ~60% de su tamaño actual */
+@media (max-width: 860px) and (min-width: 641px) {
+  .link-card {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 1.2rem 0.9rem;
+    gap: 0.45rem;
+    border-radius: 10px;
+  }
+  .link-card img { width: 57px; height: 57px; }
+  .link-card h3 { font-size: 0.8rem; }
+  .link-card p { font-size: 0.66rem; }
+  .link-card .btn { padding: 0.45rem 0.9rem; font-size: 0.8rem; margin-top: 0.3rem; }
 }
 
 .link-card {
