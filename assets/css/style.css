@@ -23,11 +23,14 @@
   --overlay-menu-shadow: rgba(0, 0, 0, 0.6);
   --footer-bg: #07090b;
 
-  /* El hero tiene una foto con scrim oscuro para que el texto sea legible;
-     se mantiene siempre oscuro sin importar el tema activo. */
+  /* El hero tiene una foto con velo (scrim) para que el texto sea legible;
+     estas variables cambian según el tema activo (ver bloque light más abajo). */
   --hero-ink: #0b0d10;
   --hero-text: #f5f7fa;
   --hero-text-muted: #cfd6de;
+  --hero-accent-text: #6bea8c;
+  --hero-scrim-rgb: 11, 13, 16;
+  --hero-ghost-border: rgba(245, 247, 250, 0.4);
 
   --card-shadow: rgba(0, 0, 0, 0.45);
 
@@ -65,6 +68,16 @@
   --overlay-menu-shadow: rgba(15, 20, 25, 0.18);
   --footer-bg: #eef1f5;
   --card-shadow: rgba(15, 20, 25, 0.14);
+
+  /* El hero también pasa a modo claro: fondo claro, texto oscuro y un
+     velo claro sobre la foto (en vez del velo oscuro) para que siga
+     siendo legible. */
+  --hero-ink: #f5f7fa;
+  --hero-text: #12161c;
+  --hero-text-muted: #5b6472;
+  --hero-accent-text: #16702f;
+  --hero-scrim-rgb: 245, 247, 250;
+  --hero-ghost-border: rgba(18, 22, 28, 0.25);
 }
 
 /* En claro, el botón primario necesita texto oscuro legible sobre el
@@ -174,12 +187,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .btn--ghost:hover { border-color: var(--green); color: var(--green); }
 
-/* El hero mantiene siempre su scrim oscuro (foto de fondo), así que el
-   botón "Ver promos" necesita texto y borde claros fijos, sin importar
-   el tema activo, para no perderse en modo claro. */
+/* El botón "Ver promos" usa colores del hero (texto/borde), que ahora
+   cambian junto con el tema activo (ver variables --hero-* más arriba). */
 .hero__actions .btn--ghost {
   color: var(--hero-text);
-  border-color: rgba(245, 247, 250, 0.4);
+  border-color: var(--hero-ghost-border);
 }
 .hero__actions .btn--ghost:hover {
   color: var(--green);
@@ -506,8 +518,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(180deg, rgba(11,13,16,0.35) 0%, rgba(11,13,16,0.55) 55%, var(--hero-ink) 96%),
-    linear-gradient(90deg, rgba(11,13,16,0.85) 0%, rgba(11,13,16,0.15) 55%);
+    linear-gradient(180deg, rgba(var(--hero-scrim-rgb),0.35) 0%, rgba(var(--hero-scrim-rgb),0.55) 55%, var(--hero-ink) 96%),
+    linear-gradient(90deg, rgba(var(--hero-scrim-rgb),0.85) 0%, rgba(var(--hero-scrim-rgb),0.15) 55%);
 }
 
 /* Desde 1024px: foto aparte a la derecha, texto a la izquierda,
@@ -557,7 +569,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero__text {
   margin-top: 1.25rem;
   max-width: 52ch;
-  color: #6bea8c;
+  color: var(--hero-accent-text);
   font-size: 1.16rem;
 }
 
