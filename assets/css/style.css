@@ -449,10 +449,43 @@ ul { margin: 0; padding: 0; list-style: none; }
    ===================================================== */
 .hero {
   position: relative;
-  min-height: 88vh;
-  display: flex;
-  align-items: flex-end;
   overflow: hidden;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  min-height: 88vh;
+  max-width: var(--container);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.25rem 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* En mobile/tablet el eyebrow ("Escuela de conductores en Rosario") queda
+   arriba de la sección y el resto del contenido (título, texto, botones)
+   abajo. Usamos flexbox en vez de position:absolute para que nunca se
+   superpongan, sin importar cuánto texto tenga el título ni la altura
+   de la pantalla (iPhone SE, Galaxy S8+, etc). */
+@media (max-width: 1023.98px) {
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 1 auto;
+    gap: 1.25rem;
+  }
+  .eyebrow {
+    margin: 0;
+  }
 }
 
 .hero__media {
@@ -461,26 +494,58 @@ ul { margin: 0; padding: 0; list-style: none; }
   z-index: 0;
 }
 .hero__img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  border-radius: 0;
 }
 .hero__scrim {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background:
     linear-gradient(180deg, rgba(11,13,16,0.35) 0%, rgba(11,13,16,0.55) 55%, var(--hero-ink) 96%),
     linear-gradient(90deg, rgba(11,13,16,0.85) 0%, rgba(11,13,16,0.15) 55%);
 }
 
-.hero__content {
-  position: relative;
-  z-index: 1;
-  max-width: var(--container);
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 1.25rem 4.5rem;
+/* Desde 1024px: foto aparte a la derecha, texto a la izquierda,
+   ya no hace falta el scrim ni el posicionamiento absoluto. */
+@media (min-width: 1024px) {
+  .hero {
+    background: var(--hero-ink);
+  }
+  .hero__inner {
+    position: static;
+    inset: auto;
+    min-height: 0;
+    max-width: 1200px;
+    padding: clamp(2.5rem, 6vw, 4.5rem) 1.25rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: normal;
+    align-items: center;
+    gap: clamp(1.75rem, 4vw, 3.5rem);
+  }
+  .hero__media {
+    position: static;
+    inset: auto;
+    flex: 1 1 45%;
+    max-width: 480px;
+  }
+  .hero__img {
+    height: auto;
+    object-fit: initial;
+    border-radius: var(--radius-lg);
+  }
+  .hero__scrim {
+    display: none;
+  }
+  .hero__content {
+    flex: 1 1 55%;
+    min-width: 0;
+  }
 }
 
 .hero__title {

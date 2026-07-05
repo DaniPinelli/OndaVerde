@@ -78,33 +78,48 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="main">
-      <div class="hero__media" aria-hidden="true">
-        <img src="./assets/images/nav3.webp" alt="" class="hero__img" fetchpriority="high" />
-        <div class="hero__scrim"></div>
-      </div>
+      <div class="hero__inner">
+        <div class="hero__content">
+          <p class="eyebrow">Escuela de conductores en Rosario</p>
 
-      <div class="hero__content">
-        <p class="eyebrow">Escuela de conductores en Rosario</p>
-        <h1 class="hero__title">
-          Somos especialistas en casos difíciles.<br />
-          Tenemos más paciencia que cualquiera, 100%garantizado. <span aria-hidden="true">🤗</span>
-        </h1>
-        <p class="hero__text">
-          Te acompañamos en todo momento, hasta que obtengas tu licencia. Nuestra secretaría
-          monitorea tu trámite de principio a fin y nuestros instructores se ocupan de que en
-          cada clase aprendas a tu ritmo.
-        </p>
+          <div class="hero__body">
+            <h1 class="hero__title">
+              Somos especialistas en casos difíciles.<br />
+              Tenemos más paciencia que cualquiera, 100%garantizado. <span aria-hidden="true">🤗</span>
+            </h1>
+            <p class="hero__text">
+              Te acompañamos en todo momento, hasta que obtengas tu licencia. Nuestra secretaría
+              monitorea tu trámite de principio a fin y nuestros instructores se ocupan de que en
+              cada clase aprendas a tu ritmo.
+            </p>
 
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="https://api.whatsapp.com/send?phone=5493413642175">
-            Consultar por WhatsApp
-          </a>
-          <a class="btn btn--ghost" href="#our-prices">Ver promos</a>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="https://api.whatsapp.com/send?phone=5493413642175">
+                Consultar por WhatsApp
+              </a>
+              <a class="btn btn--ghost" href="#our-prices">Ver promos</a>
+            </div>
+
+            <ul class="hero__tags" aria-hidden="true">
+              <li>🚙</li><li>👏🏻</li><li>🏅</li><li>🙏🏻</li><li>🚀</li><li>🎓</li>
+            </ul>
+          </div>
         </div>
 
-        <ul class="hero__tags" aria-hidden="true">
-          <li>🚙</li><li>👏🏻</li><li>🏅</li><li>🙏🏻</li><li>🚀</li><li>🎓</li>
-        </ul>
+        <div class="hero__media">
+          <img
+            src="./assets/images/nav3-720.webp"
+            srcset="
+              ./assets/images/nav3-480.webp 480w,
+              ./assets/images/nav3-720.webp 720w
+            "
+            sizes="(min-width: 1024px) 480px, 100vw"
+            alt="Alumna de Onda Verde con su licencia de conducir recién obtenida, al lado del auto de la escuela"
+            class="hero__img"
+            fetchpriority="high"
+          />
+          <div class="hero__scrim"></div>
+        </div>
       </div>
     </section>
 
