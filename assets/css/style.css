@@ -616,6 +616,45 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--text-muted);
 }
 
+/* Banner "20% OFF / 3 S/INTERÉS" debajo del título de Promos */
+.promo-banner {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0.85rem auto 0;
+  padding: 0.6rem 1.6rem;
+  border-radius: 10px;
+  background: #d0021b;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.425rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+  animation: promo-banner-blink 3s ease-in-out infinite;
+}
+.promo-banner__part { white-space: nowrap; }
+
+@media (min-width: 640px) {
+  .promo-banner {
+    flex-direction: row;
+    gap: 0.5rem;
+    font-size: 1.65rem;
+    padding: 0.7rem 2rem;
+  }
+}
+
+@keyframes promo-banner-blink {
+  0%, 35%   { opacity: 1; }
+  50%       { opacity: 0; }
+  85%, 100% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-banner { animation: none; }
+}
+
 /* =====================================================
    CAROUSEL (opiniones)
    ===================================================== */
@@ -737,7 +776,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .price-card {
   position: relative;
-  background: linear-gradient(165deg, rgba(74,222,107,0.12), var(--surface-2) 55%);
+  background:
+    radial-gradient(circle at top left, rgba(74,222,107,0.32), transparent 55%),
+    linear-gradient(165deg, rgba(74,222,107,0.28), var(--surface-2) 62%);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 1.75rem 1.5rem;
@@ -752,7 +793,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .price-card--featured {
   border-color: var(--green);
+  background:
+    radial-gradient(circle at top left, rgba(74,222,107,0.4), transparent 58%),
+    linear-gradient(165deg, rgba(74,222,107,0.36), var(--surface-2) 62%);
 }
+
+
 
 .price-card__badge {
   position: absolute;
