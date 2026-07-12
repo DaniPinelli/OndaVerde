@@ -7,10 +7,10 @@
   --surface-2: #1b2129;
   --border: #262d36;
   --text: #edf0f4;
-  --text-muted: #9aa4b2;
+  --text-muted: #939eac;
   --green: #4ade6b;
   --green-deep: #1f7a3d;
-  --amber: #ffb238;
+  --amber: #ffa726;
   --wsp: #25d366;
 
   /* Fondos semitransparentes (header, menú mobile, flechas del carrusel).
@@ -28,7 +28,7 @@
   --hero-ink: #0b0d10;
   --hero-text: #f5f7fa;
   --hero-text-muted: #cfd6de;
-  --hero-accent-text: #6bea8c;
+  --hero-accent-text: #5edc7e;
   --hero-scrim-rgb: 11, 13, 16;
   --hero-ghost-border: rgba(245, 247, 250, 0.4);
 
@@ -56,10 +56,10 @@
   --surface-2: #eef1f5;
   --border: #dbe1e8;
   --text: #12161c;
-  --text-muted: #5b6472;
+  --text-muted: #475569;
   --green: #1f9c47;
   --green-deep: #16702f;
-  --amber: #b9720a;
+  --amber: #924f06;
 
   --overlay-bg: rgba(255, 255, 255, 0.78);
   --overlay-bg-strong: rgba(255, 255, 255, 0.94);
@@ -75,7 +75,7 @@
   --hero-ink: #f5f7fa;
   --hero-text: #12161c;
   --hero-text-muted: #5b6472;
-  --hero-accent-text: #16702f;
+  --hero-accent-text: #166534;
   --hero-scrim-rgb: 245, 247, 250;
   --hero-ghost-border: rgba(18, 22, 28, 0.25);
 }
@@ -87,7 +87,7 @@
 [data-theme="light"] .skip-link {
   color: #ffffff;
 }
-[data-theme="light"] .btn--primary:hover { background: #248f45; }
+[data-theme="light"] .btn--primary:hover { background: #1a7e38; }
 
 /* =====================================================
    RESET / BASE
