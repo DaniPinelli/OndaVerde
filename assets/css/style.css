@@ -75,7 +75,7 @@
   --hero-ink: #f5f7fa;
   --hero-text: #12161c;
   --hero-text-muted: #5b6472;
-  --hero-accent-text: #15803d;
+  --hero-accent-text: #5edc7e;
   --hero-scrim-rgb: 11, 13, 16;
   --hero-ghost-border: rgba(18, 22, 28, 0.25);
 }
@@ -581,6 +581,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--hero-text);
 }
 
+/* Cuando la foto queda detrás del texto (≤1023px), título siempre blanco */
+@media (max-width: 1023.98px) {
+  .hero__title { color: #f5f7fa; }
+}
+
 .hero__text {
   margin-top: 1.25rem;
   max-width: 52ch;
@@ -611,6 +616,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   .eyebrow { font-size: 0.68rem; }
   .hero__title { font-size: clamp(1.45rem, 3.6vw, 2.9rem); }
   .hero__text { font-size: 1.1rem; }
+}
+
+/* Tablets (481px–860px): título más compacto */
+@media (min-width: 481px) and (max-width: 860px) {
+  .hero__title { font-size: clamp(1.5rem, 3.8vw, 2.2rem); }
 }
 
 /* iPhone SE / pantallas muy angostas (~320px): proporciones más compactas */
