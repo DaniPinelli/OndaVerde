@@ -494,6 +494,11 @@ ul { margin: 0; padding: 0; list-style: none; }
     justify-content: space-between;
     flex: 1 1 auto;
     gap: 1.25rem;
+    background: rgba(var(--hero-scrim-rgb), 0.5);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
   .eyebrow {
     margin: 0;
