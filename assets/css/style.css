@@ -704,6 +704,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .carousel__slide img {
   width: 100%;
+  height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
