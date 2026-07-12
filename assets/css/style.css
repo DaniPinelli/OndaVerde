@@ -656,7 +656,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Mobile pequeño: reduce tamaño de letra del hero ~15% */
 @media (max-width: 480px) {
   .eyebrow { font-size: 0.68rem; }
-  .hero__title { font-size: clamp(1.04rem, 4.83vw, 1.55rem); }
+  .hero__title { font-size: clamp(1.05rem, 4.9vw, 1.6rem); }
+  .emoji-small { font-size: 0.8em; }
   .hero__text { font-size: 1.1rem; }
   /* El bloque unido (título + párrafo) sigue el mismo tamaño de letra
      que el párrafo, para que su ancho (52ch) se mantenga igual al
@@ -665,7 +666,7 @@ ul { margin: 0; padding: 0; list-style: none; }
     font-size: 1.1rem;
     /* Menos padding lateral: el texto queda más cerca de los bordes
        del bloque y gana ancho disponible para el título. */
-    padding: 0.7rem 0.75rem;
+    padding: 0.7rem 0.4rem;
   }
 }
 
