@@ -48,20 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', closeMenu);
   });
 
-  /* ── Header con fondo al scrollear ───────────────────── 
-  const header = document.getElementById('site-header');
-  let scrollTicking = false;
-  const onScroll = () => {
-    if (scrollTicking) return;
-    scrollTicking = true;
-    window.requestAnimationFrame(() => {
-      header.classList.toggle('is-scrolled', window.scrollY > 12);
-      scrollTicking = false;
-    });
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); */
-
   /* ── Header con fondo al scrollear ───────────────────── */
   const header = document.getElementById('site-header');
   let scrollTicking = false;
@@ -203,21 +189,5 @@ document.addEventListener('DOMContentLoaded', () => {
       .filter(Boolean);
     carouselStates.forEach(wireCarousel); // fase 2: solo escrituras
   });
-
-  /* ── Mapa: se carga recién al hacer click, ahorra el JS de Maps ── */
-  const mapBtn = document.getElementById('mapLoadBtn');
-  if (mapBtn) {
-    mapBtn.addEventListener('click', () => {
-      const wrap = document.getElementById('mapFrame');
-      const src = wrap.getAttribute('data-map-src');
-      const iframe = document.createElement('iframe');
-      iframe.src = src;
-      iframe.title = 'Ubicación Onda Verde';
-      iframe.loading = 'lazy';
-      iframe.referrerPolicy = 'no-referrer-when-downgrade';
-      iframe.allowFullscreen = true;
-      wrap.replaceChildren(iframe);
-    }, { once: true });
-  }
 
 });
