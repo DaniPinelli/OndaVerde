@@ -596,6 +596,19 @@ ul { margin: 0; padding: 0; list-style: none; }
   font-size: 1.16rem;
 }
 
+/* Desde 1024px el hero pasa a fondo plano (--hero-ink) en vez del scrim
+   oscuro sobre la foto. En modo claro ese fondo es casi blanco, y el verde
+   claro de .eyebrow/.hero__text (pensado para fondos oscuros) queda con
+   contraste insuficiente (1.6:1 y 3.3:1, se necesita 4.5:1). Se usa
+   --green-deep en su lugar, que sí pasa (~5.8:1). En mobile/tablet no hace
+   falta: ahí el texto siempre va sobre el scrim oscuro, sin importar el tema. */
+@media (min-width: 1024px) {
+  [data-theme="light"] .eyebrow,
+  [data-theme="light"] .hero__text {
+    color: var(--green-deep);
+  }
+}
+
 .hero__actions {
   margin-top: 2rem;
   display: flex;
@@ -1049,6 +1062,20 @@ ul { margin: 0; padding: 0; list-style: none; }
   border: none;
   display: block;
 }
+.map-frame__placeholder {
+  width: 100%;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.14rem;
+}
+
 .footer__hours {
   margin-top: 2.5rem;
   padding-top: 2rem;

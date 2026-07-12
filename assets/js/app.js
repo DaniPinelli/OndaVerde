@@ -190,4 +190,38 @@ document.addEventListener('DOMContentLoaded', () => {
     carouselStates.forEach(wireCarousel); // fase 2: solo escrituras
   });
 
+  /* ── Mapa: se carga solo al acercarse a esa sección (en vez de al
+     comienzo de la página), así se ahorran los ~400 KiB de JS de Google
+     Maps en las visitas que nunca llegan hasta el footer. El rootMargin
+     de 300px hace que arranque a cargar un poco antes de que sea visible,
+     para que esté listo cuando el usuario efectivamente llega. */
+  const mapFrame = document.getElementById('mapFrame');
+  const loadMap = () => {
+    const src = mapFrame.getAttribute('data-map-src');
+    if (!src) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = 'Ubicación Onda Verde';
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.allowFullscreen = true;
+    mapFrame.replaceChildren(iframe);
+  };
+
+  if (mapFrame) {
+    if ('IntersectionObserver' in window) {
+      const mapObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          loadMap();
+          mapObserver.disconnect();
+        });
+      }, { rootMargin: '300px 0px', threshold: 0 });
+      mapObserver.observe(mapFrame);
+    } else {
+      // Sin soporte de IntersectionObserver: se carga directo, sin esperar
+      loadMap();
+    }
+  }
+
 });
