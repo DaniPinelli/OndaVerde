@@ -656,10 +656,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Mobile pequeño: reduce tamaño de letra del hero ~15% */
 @media (max-width: 480px) {
   .eyebrow { font-size: 0.68rem; }
-  /* Achicado para que "Somos especialistas en casos difíciles!" entre
-     en un solo renglón: escala con el viewport (4.2vw) en vez de un
-     tamaño fijo, así se ajusta bien en anchos parecidos (~360-480px). */
-  .hero__title { font-size: clamp(0.9rem, 4.2vw, 1.35rem); }
+  .hero__title { font-size: clamp(1.04rem, 4.83vw, 1.55rem); }
   .hero__text { font-size: 1.1rem; }
   /* El bloque unido (título + párrafo) sigue el mismo tamaño de letra
      que el párrafo, para que su ancho (52ch) se mantenga igual al
