@@ -493,15 +493,25 @@ ul { margin: 0; padding: 0; list-style: none; }
     flex-direction: column;
     justify-content: space-between;
     flex: 1 1 auto;
-    gap: 1.25rem;
-    background: rgba(var(--hero-scrim-rgb), 0.5);
-    padding: 1.25rem;
-    border-radius: var(--radius-md);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    gap: 0.75rem;
   }
   .eyebrow {
     margin: 0;
+    display: inline-block;
+    align-self: flex-start;
+    background: rgba(var(--hero-scrim-rgb), 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+  }
+  .hero__title,
+  .hero__text {
+    background: rgba(var(--hero-scrim-rgb), 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-sm);
   }
 }
 
