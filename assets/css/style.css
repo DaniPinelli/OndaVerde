@@ -688,7 +688,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   .promo-banner { font-size: 1.15rem; padding: 0.5rem 1rem; }
   .price-card__price { font-size: 1.6rem; }
   .price-card__detail { font-size: 1.1rem; }
-  .footer__title { font-size: 1.4rem; }
+  .footer__title { font-size: 1.2rem; }
 }
 
 
@@ -1053,6 +1053,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   text-align: center;
   font-size: clamp(1.68rem, 3.6vw, 2.4rem);
   margin-bottom: 2.5rem;
+}
+.footer__title span {
+  font-size: 0.75em;
+}
+@media (max-width: 480px) {
+  .footer__title { font-size: 1.3rem; }
 }
 
 .footer__grid {
