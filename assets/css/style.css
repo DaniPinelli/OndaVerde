@@ -533,14 +533,6 @@ ul { margin: 0; padding: 0; list-style: none; }
        para ganar la cascada (ver @media junto a .hero__title { color }) */
   }
 
-  /* Emojis repartidos proporcionalmente: misma distancia entre ellos
-     y respecto de los bordes del bloque (en vez de amontonados y
-     centrados). El tamaño de cada emoji no se toca. */
-  .hero__tags {
-    width: 100%;
-    justify-content: space-evenly;
-    gap: 0;
-  }
 }
 
 .hero__media {
@@ -642,10 +634,21 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .hero__tags {
-  margin-top: 2.25rem;
+  margin-top: 0.35rem;
+  padding: 0;
+  list-style: none;
   display: flex;
-  gap: 0.6rem;
-  font-size: 1.3rem;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  font-size: inherit;
+}
+
+@media (max-width: 1023px) {
+  .hero__tags {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 0.2rem;
+  }
 }
 
 /* Mobile pequeño: reduce tamaño de letra del hero ~15% */
@@ -654,9 +657,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   .hero__title { font-size: clamp(1.05rem, 4.9vw, 1.6rem); }
   .emoji-small { font-size: 0.8em; }
   .hero__text { font-size: 1.1rem; }
-  /* El bloque unido (título + párrafo) sigue el mismo tamaño de letra
-     que el párrafo, para que su ancho (52ch) se mantenga igual al
-     ancho que tendría el texto "Te acompañamos..." a este tamaño. */
+  .hero__tags { font-size: inherit; }
   .hero__intro {
     font-size: 1.1rem;
     /* Menos padding lateral: el texto queda más cerca de los bordes
@@ -677,7 +678,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   .eyebrow { font-size: 0.6rem; }
   .hero__actions { gap: 0.6rem; }
   .btn { padding: 0.7rem 1.1rem; font-size: 0.85rem; }
-  .hero__tags { font-size: 1.1rem; }
+  .hero__tags { font-size: inherit; }
   .hero__intro { font-size: 0.95rem; padding: 0.65rem 0.7rem; }
   .section__title { font-size: clamp(1.3rem, 5vw, 2.3rem); }
   .promo-banner { font-size: 1.15rem; padding: 0.5rem 1rem; }
