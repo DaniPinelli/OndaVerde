@@ -193,17 +193,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .btn--ghost:hover { border-color: var(--green); color: var(--green); }
 
-/* El botón "Ver promos" usa colores del hero (texto/borde), que ahora
-   cambian junto con el tema activo (ver variables --hero-* más arriba). */
-.hero__actions .btn--ghost {
-  color: var(--hero-text);
-  border-color: var(--hero-ghost-border);
-}
-.hero__actions .btn--ghost:hover {
-  color: var(--green);
-  border-color: var(--green);
-}
-
 .btn--sm { padding: 0.6rem 1.1rem; font-size: 0.85rem; }
 .btn--block { width: 100%; }
 
@@ -548,10 +537,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   object-position: top center;
   border-radius: 0;
 }
-.hero__scrim {
-  display: none;
-}
-
 /* Desde 1024px: foto aparte a la derecha, texto a la izquierda,
    ya no hace falta el scrim ni el posicionamiento absoluto. */
 @media (min-width: 1024px) {
@@ -626,38 +611,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
 }
 
-.hero__actions {
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-}
-
-.hero__tags {
-  margin-top: 0.35rem;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  justify-content: flex-start;
-  gap: 0.75rem;
-  font-size: inherit;
-}
-
-@media (max-width: 1023px) {
-  .hero__tags {
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 0.2rem;
-  }
-}
-
 /* Mobile pequeño: reduce tamaño de letra del hero ~15% */
 @media (max-width: 480px) {
   .eyebrow { font-size: 0.68rem; }
   .hero__title { font-size: clamp(1.05rem, 4.9vw, 1.6rem); }
   .emoji-small { font-size: 0.8em; }
   .hero__text { font-size: 1.1rem; }
-  .hero__tags { font-size: inherit; }
   .hero__intro {
     font-size: 1.1rem;
     /* Menos padding lateral: el texto queda más cerca de los bordes
@@ -676,9 +635,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   .hero__title { font-size: 0.85rem; }
   .hero__text { font-size: 0.95rem; }
   .eyebrow { font-size: 0.6rem; }
-  .hero__actions { gap: 0.6rem; }
   .btn { padding: 0.7rem 1.1rem; font-size: 0.85rem; }
-  .hero__tags { font-size: inherit; }
   .hero__intro { font-size: 0.95rem; padding: 0.65rem 0.7rem; }
   .section__title { font-size: clamp(1.3rem, 5vw, 2.3rem); }
   .promo-banner { font-size: 1.15rem; padding: 0.5rem 1rem; }
