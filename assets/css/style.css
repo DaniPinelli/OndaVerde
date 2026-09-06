@@ -573,7 +573,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .hero__title {
-  font-size: clamp(1.53rem, 3.825vw, 2.61rem);
+  font-size: clamp(1.53rem, 3.825vw, 1.5rem);
   max-width: 18ch;
   color: var(--hero-text);
 }
