@@ -196,6 +196,19 @@ ul { margin: 0; padding: 0; list-style: none; }
 .btn--sm { padding: 0.6rem 1.1rem; font-size: 0.85rem; }
 .btn--block { width: 100%; }
 
+/* Tamaño grande para el botón de clases a domicilio */
+.btn--lg {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+}
+@media (max-width: 640px) {
+  .btn--lg {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+}
+
 /* =====================================================
    HEADER / NAV
    ===================================================== */
@@ -852,8 +865,6 @@ ul { margin: 0; padding: 0; list-style: none; }
     linear-gradient(165deg, rgba(74,222,107,0.36), var(--surface-2) 62%);
 }
 
-
-
 .price-card__badge {
   position: absolute;
   top: -0.65rem;
@@ -1153,4 +1164,12 @@ ul { margin: 0; padding: 0; list-style: none; }
     opacity: 0;
     pointer-events: none;
   }
+}
+
+/* =====================================================
+   BOTÓN CLASES A DOMICILIO
+   ===================================================== */
+.domicilio-cta {
+  text-align: center;
+  margin-top: 2.5rem;
 }
