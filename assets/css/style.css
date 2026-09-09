@@ -975,8 +975,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #38e568; /* Color verde del botón */
-  color: #0b2212; /* Color de texto oscuro para buen contraste */
+  background-color: #1a7e38; /* Color verde del botón */
+  color:  rgb(255, 255, 255); /* Color de texto oscuro para buen contraste */
   font-weight: 700;
   font-size: 14px;
   text-transform: uppercase;
@@ -998,6 +998,24 @@ ul { margin: 0; padding: 0; list-style: none; }
 .btn-domicilio:hover {
   background-color: #2fce5b;
   transform: translateY(-2px);
+}
+
+/* Ajuste responsive para pantallas angostas (360px o menos) */
+@media (max-width: 390px) {
+  .btn-domicilio,
+  .domicilio-cta .btn {
+    padding: 8px 16px !important;    /* Reduce el relleno vertical y horizontal */
+    font-size: 11px !important;     /* Achica la tipografía para que no rompa */
+    letter-spacing: 0.2px;          /* Espaciado de letras ajustado */
+    white-space: nowrap;            /* Evita que el texto se parta en 2 líneas */
+    max-width: 90%;                 /* Mantiene un margen cómodo respecto a los bordes */
+  }
+
+  .btn-domicilio svg,
+  .domicilio-cta .btn svg {
+    width: 16px !important;         /* Ajusta proporcionalmente el icono de WhatsApp */
+    height: 16px !important;
+  }
 }
 
 /* =====================================================
