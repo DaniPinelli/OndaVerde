@@ -961,11 +961,43 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
 }
 
-.disclaimer {
-  text-align: center;
-  margin-top: 2.5rem;
-  color: var(--text-muted);
-  font-size: 0.85rem;
+/* Centrar el botón debajo de las cards */
+.domicilio-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  width: 100%;
+}
+
+/* Estilo y tamaño compacto del botón */
+.btn-domicilio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #38e568; /* Color verde del botón */
+  color: #0b2212; /* Color de texto oscuro para buen contraste */
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 25px; /* Formula bordes redondeados tipo píldora */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Tamaño controlado del icono SVG */
+.btn-domicilio svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor; /* Usa el mismo color del texto */
+  flex-shrink: 0;
+}
+
+/* Efecto al pasar el cursor */
+.btn-domicilio:hover {
+  background-color: #2fce5b;
+  transform: translateY(-2px);
 }
 
 /* =====================================================
