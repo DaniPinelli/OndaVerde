@@ -342,7 +342,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   text-decoration: none;
   padding: 0.4rem 0;
   border-bottom: 2px solid transparent;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  /* Sin transition: animar color/border-color no es "compuesto" por la GPU
+     (fuerza repintado) y el scrollspy lo dispara al hacer scroll.
+     El cambio de estado ahora es instantáneo, sin diferencia visual relevante. */
 }
 .nav__link:hover,
 .nav__link.is-active {
