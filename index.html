@@ -2,26 +2,28 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tema inicial: se aplica antes del primer pintado para evitar el parpadeo del tema equivocado -->
   <script>
     (function () {
       try {
         var saved = localStorage.getItem('theme');
-        var theme = saved === 'light' || saved === 'dark'
-          ? saved
-          : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        var theme = (saved === 'light' || saved === 'dark') ? saved : (prefersLight ? 'light' : 'dark');
         document.documentElement.setAttribute('data-theme', theme);
       } catch (e) {}
     })();
   </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Escuela de Conductores Onda Verde | Rosario</title>
+  <meta name="description" content="Escuela de Conductores Onda Verde — clases de manejo en Rosario y alrededores, con y sin auto para rendir, cursos teóricos y acompañamiento en todo el trámite." />
+  <meta name="theme-color" content="#0b0d10" />
 
   <link rel="icon" href="./assets/images/favi.webp" />
-  <meta name="theme-color" content="#0b0d10" />
-  <meta name="description" content="Escuela de Conductores Onda Verde — clases de manejo en Rosario y alrededores, con y sin auto para rendir, cursos teóricos y acompañamiento en todo el trámite." />
-  <meta name="keywords" content="escuelas de conducir Rosario, autoescuela Rosario, escuela de conductores Rosario, escuelas de manejo Rosario, clases de manejo Rosario, cursos de manejo en Rosario, sacar licencia de conducir" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
 
+  <!-- Fuentes: precarga no bloqueante para no frenar el primer pintado -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style"
@@ -30,12 +32,17 @@
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=optional" />
   </noscript>
-
-  <title>Escuela de Conductores Onda Verde | Rosario</title>
 </head>
 <body>
 
   <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <!-- Sprite de iconos: cada símbolo se define una sola vez y se reutiliza con <use> -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-wsp" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </symbol>
+  </svg>
 
   <!-- ===== NAVBAR ===== -->
   <header class="site-header" id="site-header">
@@ -82,15 +89,13 @@
         <div class="hero__content">
           <p class="eyebrow">Escuela de conductores en Rosario</p>
 
-          <div class="hero__body">
-            <div class="hero__intro">
-              <h1 class="hero__title">
-                Somos especialistas en casos difíciles!  <br> Tenemos más paciencia que cualquiera, 100% garantizado 🤗<span aria-hidden="true" class="emoji-small"></span>
-              </h1>
-              <p class="hero__text">
-                Te vamos a ayudar a ganar confianza y seguridad desde tu primera clase, también te guiamos con el trámite de principio a fin para que obtengas tu licencia sin estresarte 🏅 🎓 🚀 
-              </p>  
-            </div>
+          <div class="hero__intro">
+            <h1 class="hero__title">
+              Somos especialistas en casos difíciles! <br> Tenemos más paciencia que cualquiera, 100% garantizado 🤗
+            </h1>
+            <p class="hero__text">
+              Te vamos a ayudar a ganar confianza y seguridad desde tu primera clase, también te guiamos con el trámite de principio a fin para que obtengas tu licencia sin estresarte 🏅 🎓 🚀
+            </p>
           </div>
         </div>
 
@@ -108,7 +113,6 @@
             fetchpriority="high"
             decoding="async"
           />
-          
         </div>
       </div>
     </section>
@@ -120,60 +124,22 @@
         <p class="section__subtitle">Divinos ellos <span aria-hidden="true">😊</span></p>
       </div>
 
-      <!-- Un solo carrusel: tablet / desktop -->
-      <div class="carousel-wrap carousel-wrap--single">
-        <div class="carousel" data-carousel>
-          <div class="carousel__track" data-carousel-track>
-            <div class="carousel__slide"><img src="./assets/images/slider1.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider2.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider3.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider4.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider5.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider6.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider7.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider8.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider9.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
+      <!-- El JS genera acá el carrusel (1 con 9 fotos en tablet/desktop,
+           3 apilados de 3 fotos en mobile). Sin JS se muestra una grilla simple. -->
+      <div class="carousel-wrap" id="opinionsMount">
+        <noscript>
+          <div class="carousel-fallback">
+            <img src="./assets/images/slider1.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" />
+            <img src="./assets/images/slider2.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" />
+            <img src="./assets/images/slider3.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" />
+            <img src="./assets/images/slider4.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" />
+            <img src="./assets/images/slider5.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" />
+            <img src="./assets/images/slider6.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" />
+            <img src="./assets/images/slider7.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" />
+            <img src="./assets/images/slider8.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" />
+            <img src="./assets/images/slider9.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" />
           </div>
-          <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Anterior">‹</button>
-          <button class="carousel__arrow carousel__arrow--next" type="button" data-carousel-next aria-label="Siguiente">›</button>
-          <div class="carousel__dots" data-carousel-dots></div>
-        </div>
-      </div>
-
-      <!-- Dos carruseles apilados: mobile (≤675px), cards más legibles -->
-      <div class="carousel-wrap carousel-wrap--split">
-        <div class="carousel carousel--split" data-carousel>
-          <div class="carousel__track" data-carousel-track>
-            <div class="carousel__slide"><img src="./assets/images/slider1.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider2.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider3.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-          </div>
-          <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Anterior">‹</button>
-          <button class="carousel__arrow carousel__arrow--next" type="button" data-carousel-next aria-label="Siguiente">›</button>
-          <div class="carousel__dots" data-carousel-dots></div>
-        </div>
-
-        <div class="carousel carousel--split" data-carousel>
-          <div class="carousel__track" data-carousel-track>
-            <div class="carousel__slide"><img src="./assets/images/slider4.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider5.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider6.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-          </div>
-          <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Anterior">‹</button>
-          <button class="carousel__arrow carousel__arrow--next" type="button" data-carousel-next aria-label="Siguiente">›</button>
-          <div class="carousel__dots" data-carousel-dots></div>
-        </div>
-
-        <div class="carousel carousel--split" data-carousel>
-          <div class="carousel__track" data-carousel-track>
-            <div class="carousel__slide"><img src="./assets/images/slider7.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider8.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-            <div class="carousel__slide"><img src="./assets/images/slider9.webp" width="280" height="280" alt="Alumno de Onda Verde que aprendió a manejar" loading="lazy" decoding="async" /></div>
-          </div>
-          <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Anterior">‹</button>
-          <button class="carousel__arrow carousel__arrow--next" type="button" data-carousel-next aria-label="Siguiente">›</button>
-          <div class="carousel__dots" data-carousel-dots></div>
-        </div>
+        </noscript>
       </div>
     </section>
 
@@ -189,33 +155,28 @@
 
       <div class="pricing">
         <article class="price-card">
-
           <div class="price-card__head">
             <span class="price-card__icon" aria-hidden="true">🚙</span>
             <h3 class="price-card__name">Promo Mini</h3>
           </div>
           <p class="price-card__detail"><strong>6 clases</strong></p>
-          <p class="price-card__price">$185.000<span>efectivo o trasferencia</span></p>
+          <p class="price-card__price">$185.000<span>efectivo o transferencia</span></p>
           <p class="price-card__price price-card__price--alt">$265.000<span>precio de lista</span></p>
-<a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&text=Hola!%20Me%20interesa%20el%20pack%20de%206%20clases%20a%20$289.600%20o%203%20cuotas%20de%20$61.700"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Consultar</a>
-
+          <a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&amp;text=Hola!%20Me%20interesa%20el%20pack%20de%206%20clases%20a%20$185.000%20o%203%20cuotas%20de%20$61.700"><svg aria-hidden="true"><use href="#icon-wsp"/></svg>Consultar</a>
         </article>
 
         <article class="price-card">
-
           <div class="price-card__head">
             <span class="price-card__icon" aria-hidden="true">🏎️</span>
             <h3 class="price-card__name">Rápida</h3>
           </div>
           <p class="price-card__detail"><strong>10 clases</strong></p>
-          <p class="price-card__price">$289.000<span>efectivo o tranferencia</span></p>
+          <p class="price-card__price">$289.000<span>efectivo o transferencia</span></p>
           <p class="price-card__price price-card__price--alt">$412.900<span>precio de lista</span></p>
-<a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&text=Hola!%20Me%20interesa%20el%20pack%20de%2010%20clases%20a%20$289.600%20o%203%20cuotas%20de%20$137.700"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Consultar</a>
+          <a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&amp;text=Hola!%20Me%20interesa%20el%20pack%20de%2010%20clases%20a%20$289.000%20o%203%20cuotas%20de%20$137.700"><svg aria-hidden="true"><use href="#icon-wsp"/></svg>Consultar</a>
         </article>
 
-        <article class="price-card ">
-
-          
+        <article class="price-card">
           <div class="price-card__head">
             <span class="price-card__icon" aria-hidden="true">🥇</span>
             <h3 class="price-card__name">Manejo Yo</h3>
@@ -223,13 +184,11 @@
           <p class="price-card__detail"><strong>10 clases + curso teórico y auto para rendir</strong></p>
           <p class="price-card__price">$359.200<span>efectivo o transferencia</span></p>
           <p class="price-card__price price-card__price--alt">$514.000<span>precio de lista</span></p>
-            <a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&text=Hola!%20Me%20interesa%20el%20pack%20de%2010%20clases,%20curso%20te%C3%B3rico%20y%20auto%20para%20rendir%20a%20$359.200%20o%203%20cuotas%20de%20$171.400"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Consultar</a>
-
+          <a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&amp;text=Hola!%20Me%20interesa%20el%20pack%20de%2010%20clases,%20curso%20te%C3%B3rico%20y%20auto%20para%20rendir%20a%20$359.200%20o%203%20cuotas%20de%20$171.400"><svg aria-hidden="true"><use href="#icon-wsp"/></svg>Consultar</a>
         </article>
 
         <article class="price-card price-card--featured">
-
-        <span class="price-card__badge">Más elegida</span>
+          <span class="price-card__badge">Más elegida</span>
           <div class="price-card__head">
             <span class="price-card__icon" aria-hidden="true">🏆</span>
             <h3 class="price-card__name">Manejo Big</h3>
@@ -237,11 +196,10 @@
           <p class="price-card__detail"><strong>15 clases + curso teórico y auto para rendir</strong></p>
           <p class="price-card__price">$467.200<span>efectivo o transferencia</span></p>
           <p class="price-card__price price-card__price--alt">$667.430<span>precio de lista</span></p>
-  <a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&text=Hola!%20Me%20interesa%20el%20pack%20de%2015%20clases,%20curso%20te%C3%B3rico%20y%20auto%20para%20rendir%20a%20$467.200%20o%203%20cuotas%20de%20$222.480"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Consultar</a>
+          <a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&amp;text=Hola!%20Me%20interesa%20el%20pack%20de%2015%20clases,%20curso%20te%C3%B3rico%20y%20auto%20para%20rendir%20a%20$467.200%20o%203%20cuotas%20de%20$222.480"><svg aria-hidden="true"><use href="#icon-wsp"/></svg>Consultar</a>
         </article>
 
         <article class="price-card">
-
           <div class="price-card__head">
             <span class="price-card__icon" aria-hidden="true">👑</span>
             <h3 class="price-card__name">Super</h3>
@@ -249,11 +207,10 @@
           <p class="price-card__detail"><strong>20 clases + curso teórico y auto para rendir</strong></p>
           <p class="price-card__price">$559.000<span>efectivo o transferencia</span></p>
           <p class="price-card__price price-card__price--alt">$798.570<span>precio de lista</span></p>
-         <a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&text=Hola!%20Me%20interesa%20el%20pack%20de%2020%20clases,%20curso%20te%C3%B3rico%20y%20auto%20para%20rendir%20a%20$559.000%20o%203%20cuotas%20de%20$266.190"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Consultar</a>
+          <a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&amp;text=Hola!%20Me%20interesa%20el%20pack%20de%2020%20clases,%20curso%20te%C3%B3rico%20y%20auto%20para%20rendir%20a%20$559.000%20o%203%20cuotas%20de%20$266.190"><svg aria-hidden="true"><use href="#icon-wsp"/></svg>Consultar</a>
         </article>
 
         <article class="price-card">
-
           <div class="price-card__head">
             <span class="price-card__icon" aria-hidden="true">💎</span>
             <h3 class="price-card__name">Full</h3>
@@ -261,17 +218,17 @@
           <p class="price-card__detail"><strong>30 clases + curso teórico y auto para rendir</strong></p>
           <p class="price-card__price">$825.600<span>efectivo o transferencia</span></p>
           <p class="price-card__price price-card__price--alt">$1.179.430<span>precio de lista</span></p>
-         <a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&text=Hola!%20Me%20interesa%20el%20pack%20de%2030%20clases,%20curso%20te%C3%B3rico%20y%20auto%20para%20rendir%20a%20$825.600%20o%203%20cuotas%20de%20$393.144"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Consultar</a>        </article>
+          <a class="price-card__cta" href="https://api.whatsapp.com/send?phone=5493413642175&amp;text=Hola!%20Me%20interesa%20el%20pack%20de%2030%20clases,%20curso%20te%C3%B3rico%20y%20auto%20para%20rendir%20a%20$825.600%20o%203%20cuotas%20de%20$393.144"><svg aria-hidden="true"><use href="#icon-wsp"/></svg>Consultar</a>
+        </article>
       </div>
 
-      <!-- NUEVO BOTÓN CONSULTAR CLASES A DOMICILIO -->
+      <!-- Botón: consultar clases a domicilio -->
       <div class="domicilio-cta">
-  <a class="btn-domicilio" href="https://api.whatsapp.com/send?phone=5493413642175&text=Hola!%20Quiero%20info%20de%20clases%20a%20domicilio">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    CONSULTAR CLASES A DOMICILIO
-  </a>
-</div>
-
+        <a class="btn-domicilio" href="https://api.whatsapp.com/send?phone=5493413642175&amp;text=Hola!%20Quiero%20info%20de%20clases%20a%20domicilio">
+          <svg aria-hidden="true"><use href="#icon-wsp"/></svg>
+          CONSULTAR CLASES A DOMICILIO
+        </a>
+      </div>
     </section>
 
     <!-- ===== ENLACES ===== -->
@@ -318,28 +275,25 @@
 
       <div class="footer__grid">
         <div class="footer__social">
-
-     
-       
-          
           <a class="social-row" href="https://www.instagram.com/ondaverdeescuela/" target="_blank" rel="noopener">
             <img src="./assets/images/instagram.webp" width="40" height="40" alt="" loading="lazy" decoding="async" />
             <span>ondaverdeescuela</span>
           </a>
 
-             <a class="social-row" href="https://www.youtube.com/watch?v=tjZEUbdM--g&list=PLXWQpUfxrtdXMR37CSb0WIcojZx0_ybK0" target="_blank" rel="noopener">
-  <img src="./assets/images/youtube.webp" width="48" height="60" alt="" loading="lazy" decoding="async" />
-  <span>ondaverdeescuela</span>
-</a>
-               <a class="social-row" href="https://www.tiktok.com/@ondaverdeescuela/video/7339916235821403397" target="_blank" rel="noopener">
-  <img src="./assets/images/tiktok.webp" width="48" height="60" alt="TikTok" loading="lazy" decoding="async" />
-  <span>ondaverdeescuela</span>
-</a>
+          <a class="social-row" href="https://www.youtube.com/watch?v=tjZEUbdM--g&list=PLXWQpUfxrtdXMR37CSb0WIcojZx0_ybK0" target="_blank" rel="noopener">
+            <img src="./assets/images/youtube.webp" width="40" height="40" alt="" loading="lazy" decoding="async" />
+            <span>ondaverdeescuela</span>
+          </a>
+
+          <a class="social-row" href="https://www.tiktok.com/@ondaverdeescuela/video/7339916235821403397" target="_blank" rel="noopener">
+            <img src="./assets/images/tiktok.webp" width="40" height="40" alt="TikTok" loading="lazy" decoding="async" />
+            <span>ondaverdeescuela</span>
+          </a>
+
           <a class="social-row" href="https://www.facebook.com/ondaverdeescueladeconductores/" target="_blank" rel="noopener">
             <img src="./assets/images/facebook1.webp" width="40" height="40" alt="" loading="lazy" decoding="async" />
             <span>ondaverdeescueladeconductores</span>
           </a>
-          
         </div>
 
         <div class="footer__map">
@@ -369,7 +323,7 @@
         <p><strong>Clases:</strong> lunes a viernes de 8 a 20hs.</p>
       </div>
 
-      <p class="footer__copy">© 2022 Escuela de Conductores Onda Verde</p>
+      <p class="footer__copy">© 2026 Escuela de Conductores Onda Verde</p>
     </div>
   </footer>
 

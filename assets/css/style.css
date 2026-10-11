@@ -133,6 +133,14 @@ a { color: inherit; }
 
 ul { margin: 0; padding: 0; list-style: none; }
 
+/* Sprite de iconos: ocupa cero espacio y no se ve, solo define los símbolos */
+.svg-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -186,28 +194,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .btn--primary:hover { background: #5eeb7e; }
 
-.btn--ghost {
-  background: transparent;
-  color: var(--text);
-  border-color: var(--border);
-}
-.btn--ghost:hover { border-color: var(--green); color: var(--green); }
-
 .btn--sm { padding: 0.6rem 1.1rem; font-size: 0.85rem; }
 .btn--block { width: 100%; }
-
-/* Tamaño grande para el botón de clases a domicilio */
-.btn--lg {
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
-}
-@media (max-width: 640px) {
-  .btn--lg {
-    padding: 0.8rem 1.8rem;
-    font-size: 1rem;
-    width: 100%;
-  }
-}
 
 /* =====================================================
    HEADER / NAV
@@ -268,7 +256,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (min-width: 861px) {
   .nav__logo { height: 47.6px; }
   /* Fluido en vez de saltar directo a 2.1rem: en notebooks/tablets
-     landscape (Surface Pro 7 ~912-1368px, etc.) el título grande +
+     landscape (Surface Pro 7 ~912-1366px, etc.) el título grande +
      logo + menú + botones no entraban en una sola fila y el texto
      terminaba rompiéndose. Recién en pantallas bien anchas llega al
      tamaño máximo. */
@@ -388,10 +376,6 @@ ul { margin: 0; padding: 0; list-style: none; }
     column-gap: 0.5rem;
   }
 
-  .nav__toggle {
-    display: flex;
-  }
-
   .nav__logo { height: 51px; } /* 50% más grande que los 34px de desktop */
   .nav__title--full { font-size: 2.1rem; } /* el doble del tamaño base */
 
@@ -446,8 +430,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 /* Pantallas angostas (Galaxy A51/A71 ~412px, Fold5 pantalla externa ~344px,
-   Poco C75 ~360-393px, etc.): el título doble se rompe, así que se achica
-   en dos escalones */
+   Poco C75 ~360-393px, etc.): el título se achica en dos escalones */
 @media (max-width: 430px) {
   .nav { padding-left: 0.5rem; padding-right: 0.7rem; }
   .nav__logo { height: 42px; }
@@ -528,13 +511,6 @@ ul { margin: 0; padding: 0; list-style: none; }
     padding: 0.85rem 1rem;
     border-radius: var(--radius-sm);
   }
-  .hero__title,
-  .hero__text {
-    /* el ancho lo controla .hero__intro; el override real de
-       max-width:18ch/52ch va más abajo, después de esas reglas base,
-       para ganar la cascada (ver @media junto a .hero__title { color }) */
-  }
-
 }
 
 .hero__media {
@@ -550,6 +526,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   object-position: top center;
   border-radius: 0;
 }
+
 /* Desde 1024px: foto aparte a la derecha, texto a la izquierda,
    ya no hace falta el scrim ni el posicionamiento absoluto. */
 @media (min-width: 1024px) {
@@ -628,7 +605,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 480px) {
   .eyebrow { font-size: 0.68rem; }
   .hero__title { font-size: clamp(1.05rem, 4.9vw, 1.6rem); }
-  .emoji-small { font-size: 0.8em; }
   .hero__text { font-size: 1.1rem; }
   .hero__intro {
     font-size: 1.1rem;
@@ -657,7 +633,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   .footer__title { font-size: 1.2rem; }
 }
 
-
 /* =====================================================
    SECTIONS (genérico)
    ===================================================== */
@@ -682,7 +657,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--text-muted);
 }
 
-/* Banner "20% OFF / 3 S/INTERÉS" debajo del título de Promos */
+/* Banner "30% OFF / 3 SIN INTERÉS" debajo del título de Promos */
 .promo-banner {
   display: inline-flex;
   flex-direction: column;
@@ -697,7 +672,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   font-weight: 700;
   font-size: 1.425rem;
   letter-spacing: 0.01em;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
   animation: promo-banner-blink 3s ease-in-out infinite;
 }
 .promo-banner__part { white-space: nowrap; }
@@ -725,17 +700,26 @@ ul { margin: 0; padding: 0; list-style: none; }
    CAROUSEL (opiniones)
    ===================================================== */
 
-/* Un solo carrusel en tablet/desktop; dos apilados en mobile */
-.carousel-wrap--single { display: block; }
-.carousel-wrap--split {
-  display: none;
+/* El JS genera acá 1 carrusel (tablet/desktop) o 3 apilados (mobile);
+   el gap solo se nota cuando hay más de uno */
+.carousel-wrap {
+  display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-@media (max-width: 860px) {
-  .carousel-wrap--single { display: none; }
-  .carousel-wrap--split { display: flex; }
+/* Sin JS: las fotos se muestran en una grilla simple */
+.carousel-fallback {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.carousel-fallback img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
 }
 
 .carousel {
@@ -844,8 +828,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .price-card {
   position: relative;
   background:
-    radial-gradient(circle at top left, rgba(74,222,107,0.32), transparent 55%),
-    linear-gradient(165deg, rgba(74,222,107,0.28), var(--surface-2) 62%);
+    radial-gradient(circle at top left, rgba(74, 222, 107, 0.32), transparent 55%),
+    linear-gradient(165deg, rgba(74, 222, 107, 0.28), var(--surface-2) 62%);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 1.75rem 1.5rem;
@@ -861,8 +845,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .price-card--featured {
   border-color: var(--green);
   background:
-    radial-gradient(circle at top left, rgba(74,222,107,0.4), transparent 58%),
-    linear-gradient(165deg, rgba(74,222,107,0.36), var(--surface-2) 62%);
+    radial-gradient(circle at top left, rgba(74, 222, 107, 0.4), transparent 58%),
+    linear-gradient(165deg, rgba(74, 222, 107, 0.36), var(--surface-2) 62%);
 }
 
 .price-card__badge {
@@ -961,60 +945,58 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
 }
 
-/* Centrar el botón debajo de las cards */
+/* =====================================================
+   BOTÓN CLASES A DOMICILIO
+   ===================================================== */
 .domicilio-cta {
   display: flex;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: 2.5rem;
   width: 100%;
+  text-align: center;
 }
 
-/* Estilo y tamaño compacto del botón */
 .btn-domicilio {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #1a7e38; /* Color verde del botón */
-  color:  rgb(255, 255, 255); /* Color de texto oscuro para buen contraste */
+  background-color: #1a7e38;
+  color: #ffffff;
   font-weight: 700;
   font-size: 14px;
   text-transform: uppercase;
   text-decoration: none;
   padding: 12px 28px;
-  border-radius: 25px; /* Formula bordes redondeados tipo píldora */
+  border-radius: 25px; /* bordes redondeados tipo píldora */
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-/* Tamaño controlado del icono SVG */
 .btn-domicilio svg {
   width: 20px;
   height: 20px;
-  fill: currentColor; /* Usa el mismo color del texto */
+  fill: currentColor; /* usa el mismo color del texto */
   flex-shrink: 0;
 }
 
-/* Efecto al pasar el cursor */
 .btn-domicilio:hover {
   background-color: #2fce5b;
   transform: translateY(-2px);
 }
 
-/* Ajuste responsive para pantallas angostas (360px o menos) */
+/* Pantallas angostas (≤390px): botón más compacto para que no se rompa */
 @media (max-width: 390px) {
-  .btn-domicilio,
-  .domicilio-cta .btn {
-    padding: 8px 16px !important;    /* Reduce el relleno vertical y horizontal */
-    font-size: 11px !important;     /* Achica la tipografía para que no rompa */
-    letter-spacing: 0.2px;          /* Espaciado de letras ajustado */
-    white-space: nowrap;            /* Evita que el texto se parta en 2 líneas */
-    max-width: 90%;                 /* Mantiene un margen cómodo respecto a los bordes */
+  .btn-domicilio {
+    padding: 8px 16px;
+    font-size: 11px;
+    letter-spacing: 0.2px;
+    white-space: nowrap; /* evita que el texto se parta en 2 líneas */
+    max-width: 90%;      /* mantiene un margen cómodo respecto a los bordes */
   }
 
-  .btn-domicilio svg,
-  .domicilio-cta .btn svg {
-    width: 16px !important;         /* Ajusta proporcionalmente el icono de WhatsApp */
-    height: 16px !important;
+  .btn-domicilio svg {
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -1194,7 +1176,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   height: 4.5rem;
   border-radius: 50%;
   background: var(--wsp) url("../images/what2.webp") no-repeat center / 122%;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   opacity: 0;
   transform: scale(0.6);
   pointer-events: none;
@@ -1214,12 +1196,4 @@ ul { margin: 0; padding: 0; list-style: none; }
     opacity: 0;
     pointer-events: none;
   }
-}
-
-/* =====================================================
-   BOTÓN CLASES A DOMICILIO
-   ===================================================== */
-.domicilio-cta {
-  text-align: center;
-  margin-top: 2.5rem;
 }

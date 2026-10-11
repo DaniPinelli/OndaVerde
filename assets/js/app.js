@@ -1,9 +1,23 @@
+/* =====================================================
+   Onda Verde — interacciones del sitio
+   Cada bloque es independiente: se puede leer, tocar o
+   quitar uno sin romper los demás.
+   ===================================================== */
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initMobileMenu();
+  initHeaderShadow();
+  initScrollspy();
+  initWhatsAppButton();
+  initOpinionCarousels();
+  initLazyMap();
+});
 
-  /* ── Modo claro / oscuro ──────────────────────────────
-     El atributo data-theme ya se setea en un script inline en el
-     <head> (para evitar el parpadeo del tema equivocado al cargar).
-     Acá solo cableamos el botón y persistimos la elección. */
+/* ── Tema claro / oscuro ───────────────────────────────
+   El atributo data-theme ya se setea en un script inline en el
+   <head> (para evitar el parpadeo del tema equivocado al cargar).
+   Acá solo se cablea el botón y se persiste la elección. */
+function initTheme() {
   const themeToggle = document.getElementById('themeToggle');
   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
   const THEME_COLORS = { dark: '#0b0d10', light: '#f5f7fa' };
@@ -12,7 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.setAttribute('data-theme', theme);
     if (themeColorMeta) themeColorMeta.setAttribute('content', THEME_COLORS[theme]);
     if (themeToggle) {
-      themeToggle.setAttribute('aria-label', theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro');
+      themeToggle.setAttribute(
+        'aria-label',
+        theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'
+      );
     }
   };
 
@@ -27,10 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
       try { localStorage.setItem('theme', next); } catch (e) {}
     });
   }
+}
 
-  /* ── Menú mobile ─────────────────────────────────────── */
+/* ── Menú mobile ─────────────────────────────────────── */
+function initMobileMenu() {
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
+  if (!navToggle || !navMenu) return;
 
   const closeMenu = () => {
     navToggle.setAttribute('aria-expanded', 'false');
@@ -44,12 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.toggle('menu-open', isOpen);
   });
 
-  navMenu.querySelectorAll('a').forEach(link => {
+  navMenu.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenu);
   });
+}
 
-  /* ── Header con fondo al scrollear ───────────────────── */
+/* ── Header con fondo al scrollear ─────────────────────
+   El scroll se limita a un trabajo por frame (rAF) para no
+   recalcular estilos en cada evento. */
+function initHeaderShadow() {
   const header = document.getElementById('site-header');
+  if (!header) return;
+
   let scrollTicking = false;
   const onScroll = () => {
     if (scrollTicking) return;
@@ -59,97 +85,143 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollTicking = false;
     });
   };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  
-  // SOLUCIÓN: Envolver el onScroll inicial en un requestAnimationFrame 
-  // para que no ensucie las lecturas limpias que hacen los carruseles abajo.
-  window.requestAnimationFrame(onScroll);
 
-  /* ── Scrollspy: resalta el link activo del menú ──────── */
+  window.addEventListener('scroll', onScroll, { passive: true });
+  // La primera pasada va en un rAF para no forzar un layout extra
+  // en el mismo tick que el resto de los cambios iniciales del DOM.
+  window.requestAnimationFrame(onScroll);
+}
+
+/* ── Scrollspy: resalta el link activo del menú ──────── */
+function initScrollspy() {
   const navLinks = document.querySelectorAll('.nav__link');
-  const sectionIds = ['main', 'students', 'our-prices', 'links', 'us'];
-  const sections = sectionIds
-    .map(id => document.getElementById(id))
+  if (!navLinks.length) return;
+
+  const sections = ['main', 'students', 'our-prices', 'links', 'us']
+    .map((id) => document.getElementById(id))
     .filter(Boolean);
+  if (!sections.length) return;
 
   const spyObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       const id = entry.target.getAttribute('id');
-      navLinks.forEach(link => {
+      navLinks.forEach((link) => {
         link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
       });
     });
   }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
 
-  sections.forEach(section => spyObserver.observe(section));
+  sections.forEach((section) => spyObserver.observe(section));
+}
 
-  /* ── Botón de WhatsApp: aparece a los 4 segundos ─────── */
-  setTimeout(() => {
-    document.getElementById('whatsapp').classList.add('is-visible');
-  }, 4000);
+/* ── Botón de WhatsApp: aparece a los 4 segundos ─────── */
+function initWhatsAppButton() {
+  const button = document.getElementById('whatsapp');
+  if (!button) return;
+  setTimeout(() => button.classList.add('is-visible'), 4000);
+}
 
-  /* ── Carrusel de opiniones (soporta varias instancias) ──
-     Se separan por completo las lecturas de geometría (medir cada
-     carrusel) de las escrituras en el DOM (crear los dots). Si se
-     alternan lectura → escritura → lectura → escritura entre varios
-     carruseles, cada lectura fuerza un recálculo de layout inmediato
-     (forced reflow). Midiendo TODOS primero y escribiendo TODOS
-     después, el navegador hace un solo layout en vez de uno por
-     carrusel. */
-  const prepareCarousel = (root) => {
-    const track = root.querySelector('[data-carousel-track]');
-    const dotsWrap = root.querySelector('[data-carousel-dots]');
-    const prevBtn = root.querySelector('[data-carousel-prev]');
-    const nextBtn = root.querySelector('[data-carousel-next]');
-    if (!track) return null;
+/* ── Carrusel de opiniones ─────────────────────────────
+   El HTML solo trae un contenedor vacío: el JS genera el o los
+   carruseles según el ancho de pantalla, así no se duplican las
+   9 fotos en el markup (menos HTML, menos nodos, parseo más rápido).
 
-    const slides = Array.from(track.children);
-    return {
-      root, track, dotsWrap, prevBtn, nextBtn, slides,
-      trackWidth: track.clientWidth,           // lectura
-      slideOffsets: slides.map(s => s.offsetLeft), // lectura
-    };
+   - Tablet/desktop (>860px): 1 carrusel con las 9 fotos.
+   - Mobile (≤860px): 3 carruseles apilados de 3 fotos (mismo
+     comportamiento visual que antes, pero sin markup repetido).
+
+   Solo se inicializa lo que está visible: nada de timers ni
+   observers corriendo para carruseles ocultos. */
+function initOpinionCarousels() {
+  const mount = document.getElementById('opinionsMount');
+  if (!mount) return;
+
+  const MOBILE_QUERY = '(max-width: 860px)';
+  const IMAGE_COUNT = 9;
+  const IMAGE_ALT = 'Alumno de Onda Verde que aprendió a manejar';
+
+  const mobile = window.matchMedia(MOBILE_QUERY);
+  let cleanups = [];
+
+  const createSlide = (n) => {
+    const slide = document.createElement('div');
+    slide.className = 'carousel__slide';
+    const img = document.createElement('img');
+    img.src = `./assets/images/slider${n}.webp`;
+    img.width = 280;
+    img.height = 280;
+    img.alt = IMAGE_ALT;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    slide.appendChild(img);
+    return slide;
   };
 
-  const wireCarousel = (state) => {
-    const { root, track, dotsWrap, prevBtn, nextBtn, slides } = state;
-    let trackWidth = state.trackWidth;
-    let slideOffsets = state.slideOffsets;
+  const createCarousel = (imageNums, split) => {
+    const root = document.createElement('div');
+    root.className = split ? 'carousel carousel--split' : 'carousel';
 
+    const track = document.createElement('div');
+    track.className = 'carousel__track';
+    imageNums.forEach((n) => track.appendChild(createSlide(n)));
+
+    const prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'carousel__arrow carousel__arrow--prev';
+    prev.setAttribute('aria-label', 'Anterior');
+    prev.textContent = '‹';
+
+    const next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'carousel__arrow carousel__arrow--next';
+    next.setAttribute('aria-label', 'Siguiente');
+    next.textContent = '›';
+
+    const dots = document.createElement('div');
+    dots.className = 'carousel__dots';
+
+    root.append(track, prev, next, dots);
+    return root;
+  };
+
+  // Cablea un carrusel ya creado en el DOM. Devuelve una función
+  // para desarmarlo (frenar el autoplay y desconectar el observer),
+  // usada al reconstruir por cambio de breakpoint.
+  const wireCarousel = (root) => {
+    const track = root.querySelector('.carousel__track');
+    const dotsWrap = root.querySelector('.carousel__dots');
+    const prevBtn = root.querySelector('.carousel__arrow--prev');
+    const nextBtn = root.querySelector('.carousel__arrow--next');
+    const slides = Array.from(track.children);
+
+    let trackWidth = 0;
+    let slideOffsets = [];
     const measure = () => {
       trackWidth = track.clientWidth;
-      slideOffsets = slides.map(s => s.offsetLeft);
+      slideOffsets = slides.map((s) => s.offsetLeft);
     };
 
-    if ('ResizeObserver' in window) {
-      new ResizeObserver(measure).observe(track);
-    } else {
-      window.addEventListener('resize', measure, { passive: true });
-    }
-
-    const dotsFragment = document.createDocumentFragment();
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'carousel__dot';
-      dot.type = 'button';
-      dot.setAttribute('aria-label', `Ir a la imagen ${i + 1}`);
-      dot.addEventListener('click', () => goTo(i));
-      dotsFragment.appendChild(dot);
-    });
-    dotsWrap.appendChild(dotsFragment); // escritura
-    const dots = Array.from(dotsWrap.children);
-
-    const currentIndex = () => {
-      if (!trackWidth) return 0;
-      return Math.round(track.scrollLeft / trackWidth);
-    };
+    const currentIndex = () => (trackWidth ? Math.round(track.scrollLeft / trackWidth) : 0);
 
     const goTo = (index) => {
       if (!trackWidth) return;
       const clamped = (index + slides.length) % slides.length;
       track.scrollTo({ left: slideOffsets[clamped], behavior: 'smooth' });
     };
+
+    // Dots: se crean en un fragment para escribir al DOM una sola vez
+    const dotsFragment = document.createDocumentFragment();
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'carousel__dot';
+      dot.setAttribute('aria-label', `Ir a la imagen ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsFragment.appendChild(dot);
+    });
+    dotsWrap.appendChild(dotsFragment);
+    const dots = Array.from(dotsWrap.children);
 
     const updateActiveDot = () => {
       const index = currentIndex();
@@ -158,44 +230,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
     prevBtn.addEventListener('click', () => goTo(currentIndex() - 1));
     nextBtn.addEventListener('click', () => goTo(currentIndex() + 1));
-    track.addEventListener('scroll', () => {
-      window.requestAnimationFrame(updateActiveDot);
-    }, { passive: true });
+    track.addEventListener('scroll', () => window.requestAnimationFrame(updateActiveDot), { passive: true });
 
-    updateActiveDot();
-
-    // Auto-avance, pausado si el usuario interactúa. No hace nada si el
-    // carrusel está oculto (display:none) por CSS responsive.
-    let autoplay = setInterval(() => goTo(currentIndex() + 1), 5000);
-    const pause = () => clearInterval(autoplay);
-    const resume = () => {
-      clearInterval(autoplay);
+    // Auto-avance, pausado si el usuario interactúa
+    let autoplay = 0;
+    const stop = () => clearInterval(autoplay);
+    const start = () => {
+      stop();
       autoplay = setInterval(() => goTo(currentIndex() + 1), 5000);
     };
-    track.addEventListener('pointerdown', pause);
-    track.addEventListener('pointerup', resume);
-    root.addEventListener('mouseenter', pause);
-    root.addEventListener('mouseleave', resume);
+    track.addEventListener('pointerdown', stop);
+    track.addEventListener('pointerup', start);
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    start();
+
+    // La medición se difiere al próximo frame: para entonces el navegador
+    // ya hizo el layout inicial, así que leer clientWidth/offsetLeft acá
+    // no fuerza un reprocesamiento síncrono extra.
+    window.requestAnimationFrame(() => {
+      if (!root.isConnected) return; // el breakpoint cambió antes del frame
+      measure();
+      updateActiveDot();
+    });
+
+    let resizeObserver = null;
+    if ('ResizeObserver' in window) {
+      resizeObserver = new ResizeObserver(measure);
+      resizeObserver.observe(track);
+    } else {
+      window.addEventListener('resize', measure, { passive: true });
+    }
+
+    return () => {
+      stop();
+      if (resizeObserver) resizeObserver.disconnect();
+      else window.removeEventListener('resize', measure);
+    };
   };
 
-  const carouselRoots = Array.from(document.querySelectorAll('[data-carousel]'));
-  // Se difiere al próximo frame: para entonces el navegador ya hizo el
-  // layout inicial de la página, así que medir clientWidth/offsetLeft acá
-  // no fuerza un reprocesamiento síncrono extra (a diferencia de leerlo en
-  // el mismo tick que los cambios de DOM de más arriba: tema, menú, etc.).
-  window.requestAnimationFrame(() => {
-    const carouselStates = carouselRoots
-      .map(prepareCarousel)  // fase 1: solo lecturas
-      .filter(Boolean);
-    carouselStates.forEach(wireCarousel); // fase 2: solo escrituras
-  });
+  const range = (from, to) => Array.from({ length: to - from + 1 }, (_, i) => from + i);
 
-  /* ── Mapa: se carga solo al acercarse a esa sección (en vez de al
-     comienzo de la página), así se ahorran los ~400 KiB de JS de Google
-     Maps en las visitas que nunca llegan hasta el footer. El rootMargin
-     de 300px hace que arranque a cargar un poco antes de que sea visible,
-     para que esté listo cuando el usuario efectivamente llega. */
+  const render = () => {
+    // Desarma lo anterior antes de reconstruir
+    cleanups.forEach((cleanup) => cleanup());
+    cleanups = [];
+    mount.replaceChildren();
+
+    const groups = mobile.matches
+      ? [range(1, 3), range(4, 6), range(7, 9)]
+      : [range(1, 9)];
+
+    const carousels = groups.map((nums) => createCarousel(nums, mobile.matches));
+    carousels.forEach((carousel) => mount.appendChild(carousel));
+    cleanups = carousels.map(wireCarousel);
+  };
+
+  render();
+
+  // Si el usuario cruza el breakpoint (p. ej. rota el celu o achica la
+  // ventana), se reconstruye el carrusel correspondiente al nuevo modo.
+  if (typeof mobile.addEventListener === 'function') {
+    mobile.addEventListener('change', render);
+  } else if (typeof mobile.addListener === 'function') {
+    mobile.addListener(render);
+  }
+}
+
+/* ── Mapa: se carga solo al acercarse a esa sección ────
+   Así se ahorran los ~400 KiB de JS de Google Maps en las visitas
+   que nunca llegan hasta el footer. El rootMargin de 300px hace que
+   arranque a cargar un poco antes de que sea visible. */
+function initLazyMap() {
   const mapFrame = document.getElementById('mapFrame');
+  if (!mapFrame) return;
+
   const loadMap = () => {
     const src = mapFrame.getAttribute('data-map-src');
     if (!src) return;
@@ -208,20 +317,17 @@ document.addEventListener('DOMContentLoaded', () => {
     mapFrame.replaceChildren(iframe);
   };
 
-  if (mapFrame) {
-    if ('IntersectionObserver' in window) {
-      const mapObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          loadMap();
-          mapObserver.disconnect();
-        });
-      }, { rootMargin: '300px 0px', threshold: 0 });
-      mapObserver.observe(mapFrame);
-    } else {
-      // Sin soporte de IntersectionObserver: se carga directo, sin esperar
-      loadMap();
-    }
+  if ('IntersectionObserver' in window) {
+    const mapObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        loadMap();
+        mapObserver.disconnect();
+      });
+    }, { rootMargin: '300px 0px', threshold: 0 });
+    mapObserver.observe(mapFrame);
+  } else {
+    // Sin soporte de IntersectionObserver: se carga directo, sin esperar
+    loadMap();
   }
-
-});
+}
