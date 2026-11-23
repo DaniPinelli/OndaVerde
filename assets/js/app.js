@@ -1,7 +1,5 @@
 /* =====================================================
    Onda Verde — interacciones del sitio
-   Cada bloque es independiente: se puede leer, tocar o
-   quitar uno sin romper los demás.
    ===================================================== */
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
@@ -11,12 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initWhatsAppButton();
   initOpinionCarousels();
   initLazyMap();
+  initCitySelector();
 });
 
-/* ── Tema claro / oscuro ───────────────────────────────
-   El atributo data-theme ya se setea en un script inline en el
-   <head> (para evitar el parpadeo del tema equivocado al cargar).
-   Acá solo se cablea el botón y se persiste la elección. */
+/* ── Tema claro / oscuro ─────────────────────────────── */
 function initTheme() {
   const themeToggle = document.getElementById('themeToggle');
   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
@@ -33,7 +29,6 @@ function initTheme() {
     }
   };
 
-  // Sincroniza el color de la barra del navegador con el tema ya aplicado
   applyTheme(document.documentElement.getAttribute('data-theme') || 'dark');
 
   if (themeToggle) {
@@ -69,9 +64,7 @@ function initMobileMenu() {
   });
 }
 
-/* ── Header con fondo al scrollear ─────────────────────
-   El scroll se limita a un trabajo por frame (rAF) para no
-   recalcular estilos en cada evento. */
+/* ── Header con fondo al scrollear ───────────────────── */
 function initHeaderShadow() {
   const header = document.getElementById('site-header');
   if (!header) return;
@@ -87,8 +80,6 @@ function initHeaderShadow() {
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  // La primera pasada va en un rAF para no forzar un layout extra
-  // en el mismo tick que el resto de los cambios iniciales del DOM.
   window.requestAnimationFrame(onScroll);
 }
 
@@ -97,7 +88,8 @@ function initScrollspy() {
   const navLinks = document.querySelectorAll('.nav__link');
   if (!navLinks.length) return;
 
-  const sections = ['main', 'students', 'our-prices', 'links', 'us']
+  // Cambio 2: Se movió 'miedo' después de 'links' para que coincida con el nuevo orden visual
+  const sections = ['main', 'students', 'our-prices', 'links', 'miedo', 'us']
     .map((id) => document.getElementById(id))
     .filter(Boolean);
   if (!sections.length) return;
@@ -122,23 +114,12 @@ function initWhatsAppButton() {
   setTimeout(() => button.classList.add('is-visible'), 4000);
 }
 
-/* ── Carrusel de opiniones ─────────────────────────────
-   El HTML solo trae un contenedor vacío: el JS genera el o los
-   carruseles según el ancho de pantalla, así no se duplican las
-   9 fotos en el markup (menos HTML, menos nodos, parseo más rápido).
-
-   - Tablet/desktop (>860px): 1 carrusel con las 9 fotos.
-   - Mobile (≤860px): 3 carruseles apilados de 3 fotos (mismo
-     comportamiento visual que antes, pero sin markup repetido).
-
-   Solo se inicializa lo que está visible: nada de timers ni
-   observers corriendo para carruseles ocultos. */
+/* ── Carrusel de opiniones ───────────────────────────── */
 function initOpinionCarousels() {
   const mount = document.getElementById('opinionsMount');
   if (!mount) return;
 
   const MOBILE_QUERY = '(max-width: 860px)';
-  const IMAGE_COUNT = 9;
   const IMAGE_ALT = 'Alumno de Onda Verde que aprendió a manejar';
 
   const mobile = window.matchMedia(MOBILE_QUERY);
@@ -185,9 +166,6 @@ function initOpinionCarousels() {
     return root;
   };
 
-  // Cablea un carrusel ya creado en el DOM. Devuelve una función
-  // para desarmarlo (frenar el autoplay y desconectar el observer),
-  // usada al reconstruir por cambio de breakpoint.
   const wireCarousel = (root) => {
     const track = root.querySelector('.carousel__track');
     const dotsWrap = root.querySelector('.carousel__dots');
@@ -210,7 +188,6 @@ function initOpinionCarousels() {
       track.scrollTo({ left: slideOffsets[clamped], behavior: 'smooth' });
     };
 
-    // Dots: se crean en un fragment para escribir al DOM una sola vez
     const dotsFragment = document.createDocumentFragment();
     slides.forEach((_, i) => {
       const dot = document.createElement('button');
@@ -232,7 +209,6 @@ function initOpinionCarousels() {
     nextBtn.addEventListener('click', () => goTo(currentIndex() + 1));
     track.addEventListener('scroll', () => window.requestAnimationFrame(updateActiveDot), { passive: true });
 
-    // Auto-avance, pausado si el usuario interactúa
     let autoplay = 0;
     const stop = () => clearInterval(autoplay);
     const start = () => {
@@ -245,11 +221,8 @@ function initOpinionCarousels() {
     root.addEventListener('mouseleave', start);
     start();
 
-    // La medición se difiere al próximo frame: para entonces el navegador
-    // ya hizo el layout inicial, así que leer clientWidth/offsetLeft acá
-    // no fuerza un reprocesamiento síncrono extra.
     window.requestAnimationFrame(() => {
-      if (!root.isConnected) return; // el breakpoint cambió antes del frame
+      if (!root.isConnected) return;
       measure();
       updateActiveDot();
     });
@@ -272,7 +245,6 @@ function initOpinionCarousels() {
   const range = (from, to) => Array.from({ length: to - from + 1 }, (_, i) => from + i);
 
   const render = () => {
-    // Desarma lo anterior antes de reconstruir
     cleanups.forEach((cleanup) => cleanup());
     cleanups = [];
     mount.replaceChildren();
@@ -288,8 +260,6 @@ function initOpinionCarousels() {
 
   render();
 
-  // Si el usuario cruza el breakpoint (p. ej. rota el celu o achica la
-  // ventana), se reconstruye el carrusel correspondiente al nuevo modo.
   if (typeof mobile.addEventListener === 'function') {
     mobile.addEventListener('change', render);
   } else if (typeof mobile.addListener === 'function') {
@@ -297,10 +267,7 @@ function initOpinionCarousels() {
   }
 }
 
-/* ── Mapa: se carga solo al acercarse a esa sección ────
-   Así se ahorran los ~400 KiB de JS de Google Maps en las visitas
-   que nunca llegan hasta el footer. El rootMargin de 300px hace que
-   arranque a cargar un poco antes de que sea visible. */
+/* ── Mapa: se carga solo al acercarse a esa sección ──── */
 function initLazyMap() {
   const mapFrame = document.getElementById('mapFrame');
   if (!mapFrame) return;
@@ -327,7 +294,79 @@ function initLazyMap() {
     }, { rootMargin: '300px 0px', threshold: 0 });
     mapObserver.observe(mapFrame);
   } else {
-    // Sin soporte de IntersectionObserver: se carga directo, sin esperar
     loadMap();
   }
+}
+
+/* ── Selector de ciudad ──────────────────────────────── */
+function initCitySelector() {
+  const picker = document.getElementById('cityPicker');
+  const promo = document.getElementById('cityPromo');
+  if (!picker || !promo) return;
+
+  const PROMOS = {
+    rosario: '🎁 En Rosario, todos los packs vienen con <strong>2 clases más, extra de regalo</strong>. Nosotros te guiamos durante todo el proceso del trámite, sin costo para vos.',
+    baigorria: '🏠 En Baigorria, Bermúdez y Beltrán te damos las <strong>clases a domicilio al mismo precio</strong> que en el local. Te pasamos a buscar por tu casa o tu trabajo y te volvemos a dejar, sin costo extra. A domicilio siempre se juntan dos clases y se hace una hora de práctica.',
+    bermudez: '🏠 En Baigorria, Bermúdez y Beltrán te damos las <strong>clases a domicilio al mismo precio</strong> que en el local. Te pasamos a buscar por tu casa o tu trabajo y te volvemos a dejar, sin costo extra. A domicilio siempre se juntan dos clases y se hace una hora de práctica.',
+    beltran: '🏠 En Baigorria, Bermúdez y Beltrán te damos las <strong>clases a domicilio al mismo precio</strong> que en el local. Te pasamos a buscar por tu casa o tu trabajo y te volvemos a dejar, sin costo extra. A domicilio siempre se juntan dos clases y se hace una hora de práctica.',
+    otra: '📍 Escribinos por WhatsApp y te pasamos la info y las promos de tu ciudad.'
+  };
+  const LABELS = {
+    rosario: 'Rosario',
+    baigorria: 'Baigorria',
+    bermudez: 'Bermúdez',
+    beltran: 'Beltrán',
+    otra: null
+  };
+  const DOMICILIO = ['baigorria', 'bermudez', 'beltran'];
+  const STORAGE_KEY = 'onda-verde-city';
+
+  const wspLinks = Array.from(document.querySelectorAll('a[href*="api.whatsapp.com/send"]'));
+
+  const withCity = (href, label) => {
+    const m = href.match(/^(.*[?&]text=)([^&]*)(.*)$/);
+    if (!m) return href;
+    let text = '';
+    try {
+      text = decodeURIComponent(m[2].replace(/\+/g, ' '));
+    } catch (e) {
+      return href;
+    }
+    text = text.replace(/^Soy de [^.]*\. /, '');
+    if (label) text = `Soy de ${label}. ${text}`;
+    return m[1] + encodeURIComponent(text) + m[3];
+  };
+
+  const applyCity = (city) => {
+    if (!PROMOS[city]) return;
+
+    picker.querySelectorAll('.city-picker__btn').forEach((btn) => {
+      const active = btn.dataset.city === city;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    promo.innerHTML = PROMOS[city];
+    promo.hidden = false;
+
+    document.body.classList.toggle('city-domicilio', DOMICILIO.includes(city));
+
+    wspLinks.forEach((link) => {
+      if (!link.dataset.wspBase) link.dataset.wspBase = link.getAttribute('href');
+      link.setAttribute('href', withCity(link.dataset.wspBase, LABELS[city]));
+    });
+
+    try { localStorage.setItem(STORAGE_KEY, city); } catch (e) {}
+  };
+
+  picker.addEventListener('click', (event) => {
+    const btn = event.target.closest('.city-picker__btn');
+    if (!btn) return;
+    applyCity(btn.dataset.city);
+  });
+
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved && PROMOS[saved]) applyCity(saved);
+  } catch (e) {}
 }
